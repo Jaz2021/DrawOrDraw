@@ -18,7 +18,7 @@ objectPrefabs = Dictionary[int, PackedScene]({
 [node name="PlayerController" type="Node2D" parent="."]
 script = ExtResource("3_8k7wh")
 groundAccel = 4000.0
-airAccel = 400.0
-JumpForce = 80.0
+airAccel = 100.0
+JumpForce = 69.0
 
 [node name="FlatArena" parent="." instance=ExtResource("4_iufkg")]
