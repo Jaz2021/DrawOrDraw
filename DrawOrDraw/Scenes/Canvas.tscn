@@ -77,7 +77,7 @@ DrawMessage = Dictionary[int, String]({
 0: "Draw yout head!",
 1: "Draw your torso!",
 2: "Draw your bicep!",
-3: "Draw your thigh!",
+3: "Draw your lower arm",
 5: "Draw your shin!"
 })
 textNameOrder = Array[int]([0, 1, 2, 3, 4, 5])
