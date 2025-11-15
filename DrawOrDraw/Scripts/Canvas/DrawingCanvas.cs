@@ -433,8 +433,4 @@ public partial class DrawingCanvas : Sprite2D
         line = lineThickness.three;
     }
 
-    public void OnFivePress()
-    {
-        line = lineThickness.five;
-    }
 }
