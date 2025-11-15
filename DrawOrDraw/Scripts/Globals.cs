@@ -25,7 +25,7 @@ public partial class Globals : Node
 	private MenuController currentMenu = null;
 	private Env currentEnv = null;
 	private bool inGame = false;
-	private bool otherPlayerReady = true;
+	private bool otherPlayerReady = false;
 	private bool imReady = false;
 	private StitchCharacter otherPlayerChar;
 	// No initial scene, that will get loaded once the player starts the game
@@ -74,10 +74,11 @@ public partial class Globals : Node
 		StartGamePacket packet = new(objs, Vector2.Zero); // Temporarily setting 0,0 as the start position
 		GD.Print("Sending start game packet");
 		NetworkingV2.SendPacket(connection, packet, true);
-		ChangeScene(canvasScene, Vector2.Zero);
 		// SpawnObjectPacket objPacket = new((ulong)connection.steamID, (byte)ObjectType.Player, Vector2.Zero);
 		// NetworkingV2.SendPacketToAll(objPacket, true);
 		// SpawnObjectPacket.SpawnObjectPacketReceived(objPacket, null);
+		ChangeScene(GameplayScene, Vector2.Zero, null);
+		ChangeMenu(PauseMenu);
 	}
 	public void StartOnlineGame()
     {
@@ -99,8 +100,8 @@ public partial class Globals : Node
 			return;
 		}
 		// We got the startgame from either ourselves or the lobby owner
-		ChangeScene(GameplayScene, Vector2.Zero, null);
-		ChangeMenu(PauseMenu);
+
+		// SendStartGamePacket(
 		return;
 		
     }
