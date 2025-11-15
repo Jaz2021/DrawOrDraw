@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bet3srmrvjupn"]
+
+[ext_resource type="Texture2D" uid="uid://dr1s5etg4os6i" path="res://sprite_textures/striped_platform.png" id="1_76l3y"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j1vpw"]
+texture = ExtResource("1_76l3y")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 6.99164, 16, 6.99164, 16, 11.117851, -16, 10.945927)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, 11.003235, 16, 11.060543, 16, 16, -16, 16)
+0:0/0/physics_layer_1/polygon_0/one_way = true
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 6.99164, 16, 6.99164, 16, 11.117851, -16, 10.945927)
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, 11.003235, 16, 11.060543, 16, 16, -16, 16)
+1:0/0/physics_layer_1/polygon_0/one_way = true
+1:0/0/terrains_peering_bit/right_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 6.99164, 16, 6.99164, 16, 11.117851, -16, 10.945927)
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, 11.003235, 16, 11.060543, 16, 16, -16, 16)
+2:0/0/physics_layer_1/polygon_0/one_way = true
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 6.99164, 16, 6.99164, 16, 11.117851, -16, 10.945927)
+3:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, 11.003235, 16, 11.060543, 16, 16, -16, 16)
+3:0/0/physics_layer_1/polygon_0/one_way = true
+3:0/0/terrains_peering_bit/left_side = 0
+
+[sub_resource type="TileSet" id="TileSet_68thb"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 2
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_j1vpw")
+
+[node name="StripedPlatform" type="TileMapLayer"]
+tile_set = SubResource("TileSet_68thb")
