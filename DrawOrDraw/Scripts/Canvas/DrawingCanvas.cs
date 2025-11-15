@@ -51,6 +51,7 @@ public struct bodyPart
 
 public partial class DrawingCanvas : Sprite2D
 {
+    [Export] private PackedScene nextScene;
     private bodyPart[] drawnSprites;
     [Export] private Texture2D SelectedPencil, UnselectedPencil, SelectedEraser, UnselectedEraser;
     [Export] private Button PencilButton, EraserButton;
@@ -276,11 +277,12 @@ public partial class DrawingCanvas : Sprite2D
     public void OnSubmitClick()
     {
         var img = canvas.CreateImage();
-
+        bool ended = true;
         for (int i = 0; i < 6; i++)
         {
             if (drawnSprites[i].texture == null)
             {
+                ended = false;
                 drawnSprites[i].texture = img;
                 switch (i)
                 {
@@ -308,6 +310,12 @@ public partial class DrawingCanvas : Sprite2D
                 createCanvas();
                 return;
             }
+        }
+        if (ended)
+        {
+            var n = nextScene.Instantiate<StitchCharacter>();
+            n.SetTextures(drawnSprites);
+            Globals.Instance.CreateCharacter(n);
         }
         return;
     }

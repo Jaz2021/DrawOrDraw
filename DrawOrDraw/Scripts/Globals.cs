@@ -121,6 +121,10 @@ public partial class Globals : Node
 		currentEnv.Enter();
 		EnvironmentRoot.AddChild(currentEnv);
 	}
+	public void CreateCharacter(StitchCharacter c)
+    {
+        
+    }
     public override void _Process(double delta)
     {
         if (NetworkingV2.isInit)
