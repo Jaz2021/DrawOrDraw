@@ -93,6 +93,13 @@ public static class SerializationExtension
             .. BitConverter.GetBytes(value.Y),
             .. BitConverter.GetBytes(value.Z)];
     }
+    public static byte[] Serialize(this Vector2 value)
+    {
+        return [
+            ..BitConverter.GetBytes(value.X),
+            ..BitConverter.GetBytes(value.Y)
+        ];
+    }
     public static byte[] Serialize(this CSteamID value)
     {
         return ((ulong)value).Serialize();
