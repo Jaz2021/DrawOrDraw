@@ -107,8 +107,9 @@ public partial class Globals : Node
     }
 	public void StartOnlineGame(StartGamePacket packet, ConnectionManager cnxn)
 	{
-
+		GD.Print("Got startgame packet");
 		ChangeScene(canvasScene, Vector2.Zero);
+		ChangeMenu(null);
 	}
 	public void StartOfflineGame()
     {
@@ -123,15 +124,24 @@ public partial class Globals : Node
 	public void ChangeScene(PackedScene newScene, Vector2 position, ObjectStructList objs = null)
 	{
 		// All scenes must have a parent node that implements IScene.
+		if(currentScene == null)
+
+		{
+            GD.Print("Current scene is null for some reason");
+        }
 		currentScene?.QueueFree();
+        
 		if(newScene != null)
 		{
+			GD.Print("New scene was not null");
+
 			currentScene = newScene.Instantiate<Scene>();
 			SceneRoot.AddChild(currentScene);
 			currentScene.EnterScene(objs, position);
 			// PlayerCam.Visible = true;
 		} else
 		{
+			GD.Print("New scene was null");
 			// PlayerCam.Visible = false;
 		}
 	}
