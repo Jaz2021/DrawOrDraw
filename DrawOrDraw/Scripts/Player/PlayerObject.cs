@@ -2,7 +2,21 @@ using Godot;
 using Networking_V2;
 public partial class PlayerObject : NetObject
 {
-
+	public enum Attacks {
+		NeutralTilt,
+		ForwardTilt,
+		DownTilt,
+		UpTilt,
+		NeutralAir,
+		ForwardAir,
+		UpAir,
+		DownAir,
+		UpSpecial,
+		DownSpecial,
+		NeutralSpecial,
+		ForwardSpecial
+	}
+	
 	public override void _Ready()
 	{
 		PlayerPacket.PlayerPacketReceived += PlayerPacketReceived;

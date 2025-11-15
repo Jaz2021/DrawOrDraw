@@ -12,6 +12,8 @@ height = 128
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cac6a"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("FootPos")]
+z_index = 3
+collision_mask = 3
 script = ExtResource("1_we6tp")
 JumpRayLength = 1.0
 MaxGroundSpeed = 60.0
@@ -30,3 +32,6 @@ shape = SubResource("CapsuleShape2D_cac6a")
 [node name="RayCast2d" type="RayCast2D" parent="."]
 position = Vector2(0, 15)
 target_position = Vector2(0, 1.8765639)
+collision_mask = 3
+
+[node name="Node2D" type="Node2D" parent="."]
