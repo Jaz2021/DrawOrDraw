@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Networking_V2;
 
@@ -5,8 +6,10 @@ public partial class CanvasScene : Scene
 {
     public override void _Ready()
     {
-        
+
     }
+
+
     public override void SpawnObject(ObjectType type, ulong id, Vector2 position, bool send = false)
     {
         // Do nothing extra for this :)

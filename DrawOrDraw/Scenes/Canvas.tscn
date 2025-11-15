@@ -1,20 +1,25 @@
-[gd_scene load_steps=19 format=3 uid="uid://6lg6y02cf3xd"]
+[gd_scene load_steps=24 format=3 uid="uid://6lg6y02cf3xd"]
 
-[ext_resource type="Script" path="res://Scripts/Canvas/DrawingCanvas.cs" id="1_53v2k"]
+[ext_resource type="Script" uid="uid://clo76t4hsrfr6" path="res://Scripts/Canvas/DrawingCanvas.cs" id="1_53v2k"]
 [ext_resource type="Script" uid="uid://cfchhj7wn1u4x" path="res://Scripts/Scenes/Scene.cs" id="1_vf7j4"]
-[ext_resource type="Texture2D" path="res://sprite_textures/canvas48.png" id="2_ox5ak"]
-[ext_resource type="Texture2D" path="res://sprite_textures/pencil_selected.png" id="3_bcll6"]
-[ext_resource type="Texture2D" path="res://sprite_textures/eraser_unselected.png" id="6_af40i"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/blackicon.png" id="7_23gnd"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/redicon.png" id="8_j000p"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/greenicon.png" id="9_aieyg"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/blueicon.png" id="10_0mo3k"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/purpleicon.png" id="11_jxeyk"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/brownicon.png" id="12_0r78b"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/greyicon.png" id="13_jkn40"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/orangeicon.png" id="14_crams"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/yellowicon.png" id="15_syyqk"]
-[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/pinkicon.png" id="16_5h3v8"]
+[ext_resource type="Texture2D" uid="uid://bkhjb45t38ajy" path="res://sprite_textures/canvas48.png" id="2_ox5ak"]
+[ext_resource type="Texture2D" uid="uid://bvrkouox4wax7" path="res://sprite_textures/pencil_selected.png" id="3_bcll6"]
+[ext_resource type="Texture2D" uid="uid://dl14r5yx0s0th" path="res://sprite_textures/pencil_unselected.png" id="4_qjf80"]
+[ext_resource type="Texture2D" uid="uid://br25c20e4wbt4" path="res://sprite_textures/eraser_selected.png" id="5_wqmdm"]
+[ext_resource type="Texture2D" uid="uid://bvspla6wwhpyt" path="res://sprite_textures/eraser_unselected.png" id="6_af40i"]
+[ext_resource type="Texture2D" uid="uid://bnl75edtakuyu" path="res://sprite_textures/color_button_icons/blackicon.png" id="7_23gnd"]
+[ext_resource type="Texture2D" uid="uid://bd7aovsevmwti" path="res://sprite_textures/color_button_icons/redicon.png" id="8_j000p"]
+[ext_resource type="Texture2D" uid="uid://sf6tuoev5xqj" path="res://sprite_textures/HeadBackground.png" id="8_jxeyk"]
+[ext_resource type="Texture2D" uid="uid://cgvxrvse4kws5" path="res://sprite_textures/TorsoBackground.png" id="9_0r78b"]
+[ext_resource type="Texture2D" uid="uid://d0h6oi5iifqcn" path="res://sprite_textures/color_button_icons/greenicon.png" id="9_aieyg"]
+[ext_resource type="Texture2D" uid="uid://cok4jg4n66j7g" path="res://sprite_textures/color_button_icons/blueicon.png" id="10_0mo3k"]
+[ext_resource type="Texture2D" uid="uid://d0m5d4q64nj3r" path="res://sprite_textures/LimbBackground.png" id="10_jkn40"]
+[ext_resource type="Texture2D" uid="uid://74kggc6k37om" path="res://sprite_textures/color_button_icons/purpleicon.png" id="11_jxeyk"]
+[ext_resource type="Texture2D" uid="uid://dlxreiuxbnmo8" path="res://sprite_textures/color_button_icons/brownicon.png" id="12_0r78b"]
+[ext_resource type="Texture2D" uid="uid://1mb55h7yhddg" path="res://sprite_textures/color_button_icons/greyicon.png" id="13_jkn40"]
+[ext_resource type="Texture2D" uid="uid://doxkox0fl0jab" path="res://sprite_textures/color_button_icons/orangeicon.png" id="14_crams"]
+[ext_resource type="Texture2D" uid="uid://ch7hvc1v1d8l4" path="res://sprite_textures/color_button_icons/yellowicon.png" id="15_syyqk"]
+[ext_resource type="Texture2D" uid="uid://b6ux3wobek4u0" path="res://sprite_textures/color_button_icons/pinkicon.png" id="16_5h3v8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bcll6"]
 
@@ -35,13 +40,36 @@ texture_filter = 1
 scale = Vector2(10, 10)
 texture = ExtResource("2_ox5ak")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("backgroundSprite", "label", "PencilButton", "EraserButton")]
 texture_filter = 1
 scale = Vector2(10, 10)
 texture = ExtResource("2_ox5ak")
 script = ExtResource("1_53v2k")
-pixelSize = null
-size = null
+backgroundSprite = NodePath("../Sprite2D2")
+label = NodePath("../Camera2D/Label")
+SelectedPencil = ExtResource("3_bcll6")
+UnselectedPencil = ExtResource("4_qjf80")
+SelectedEraser = ExtResource("5_wqmdm")
+UnselectedEraser = ExtResource("6_af40i")
+PencilButton = NodePath("../Camera2D/PencilButton")
+EraserButton = NodePath("../Camera2D/EraserButton")
+backgroundTextures = Dictionary[int, Texture]({
+0: ExtResource("8_jxeyk"),
+1: ExtResource("9_0r78b"),
+2: ExtResource("10_jkn40"),
+3: ExtResource("10_jkn40"),
+4: ExtResource("10_jkn40"),
+5: ExtResource("10_jkn40")
+})
+DrawMessage = Dictionary[int, String]({
+0: "Draw your head",
+1: "Draw your torso!",
+2: "Draw your upper arm!",
+3: "Draw your forearm/hand!",
+4: "Draw your thigh!",
+5: "Draw your shin/foot!"
+})
+textNameOrder = Array[int]([0, 1, 2, 3, 4, 5])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -203,6 +231,13 @@ offset_top = 251.0
 offset_right = 227.0
 offset_bottom = 293.0
 text = "Submit"
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = -116.0
+offset_top = -290.0
+offset_right = 195.0
+offset_bottom = -255.0
+text = "Draw Your Head"
 
 [node name="ObjectRoot" type="Node2D" parent="."]
 

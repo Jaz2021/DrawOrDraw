@@ -112,6 +112,22 @@ public static class PtrConverter
         byte value = ReadBytes(packet, ref start, 1)[0];
         return value;
     }
+    public static SpriteArray2D GetSpriteArray2D(IntPtr packet, ref int start)
+    {
+        byte size = GetByte(packet, ref start);
+        SpriteArray2D sprite = new(size);
+        for(int i = 0; i < size; i++)
+        {
+            for(int j = 0; j < size; j++)
+            {
+                sprite.Pixels[i][j].r = GetByte(packet, ref start);
+                sprite.Pixels[i][j].g = GetByte(packet, ref start);
+                sprite.Pixels[i][j].b = GetByte(packet, ref start);
+                sprite.Pixels[i][j].a = GetByte(packet, ref start);
+            }
+        }
+        return sprite;
+    }
     // Infinite length string terminated by \0
     // public static string GetString(IntPtr packet, ref int start)
     // {

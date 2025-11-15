@@ -21,6 +21,7 @@ public partial class Globals : Node
 	private MenuController currentMenu = null;
 	private Env currentEnv = null;
 	private bool inGame = false;
+	private bool otherPlayerReady = false;
 	// No initial scene, that will get loaded once the player starts the game
 	public override void _Ready()
 	{
@@ -36,6 +37,7 @@ public partial class Globals : Node
 		ChangeMenu(InitialMenu);
 		NetworkingV2.Init(false);
 		StartGamePacket.StartGamePacketReceived += StartOnlineGame;
+		ReadyPacket.ReadyPacketReceived += ReadyPacketReceived;
 	}
 	public void SendStartGamePacket(ConnectionManager connection)
 	{
@@ -121,10 +123,24 @@ public partial class Globals : Node
 		currentEnv.Enter();
 		EnvironmentRoot.AddChild(currentEnv);
 	}
-	public override void _Process(double delta)
-	{
-		if (NetworkingV2.isInit)
-		{
+	private void ReadyPacketReceived(ReadyPacket packet, ConnectionManager connection)
+    {
+        otherPlayerReady = true;
+    }
+	public void CreateCharacter(StitchCharacter c)
+    {
+        ReadyPacket r = new();
+		NetworkingV2.SendPacketToAll(r, true); // Tell the other player we are ready
+        if (otherPlayerReady)
+        {
+            SpritePacket packet = new(c.bodyParts[textName.lower_arm], c.bodyParts[textName.head], c.bodyParts[textName.shin], c.bodyParts[textName.thigh], c.bodyParts[textName.torso], c.bodyParts[textName.upper_arm]);
+			NetworkingV2.SendPacketToAll(packet, true);
+        }
+    }
+    public override void _Process(double delta)
+    {
+        if (NetworkingV2.isInit)
+        {
 			SteamAPI.RunCallbacks();
 		}
 	}
