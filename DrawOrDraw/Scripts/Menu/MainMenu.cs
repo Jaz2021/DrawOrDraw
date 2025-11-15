@@ -11,7 +11,7 @@ public partial class MainMenu : MenuController
     public void StartOnlineGame()
     {
         GD.Print("Start Online game");
-        Globals.Instance.StartOnlineGame(new(null, Vector2.Zero), null);
+        Globals.Instance.StartOnlineGame();
     }
     public void StartOfflineGame()
     {

@@ -113,7 +113,7 @@ public class SteamLobby{
             ResetLobby();
         }
         AddLobbyMember(SteamUser.GetSteamID());
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, 4);
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, 2);
 
     }
     public void PlayerJoined(CSteamID member){

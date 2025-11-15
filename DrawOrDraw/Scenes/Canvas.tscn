@@ -37,7 +37,6 @@ script = ExtResource("1_0r78b")
 objectRoot = NodePath("ObjectRoot")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-visible = false
 texture_filter = 1
 scale = Vector2(17.5, 17.5)
 texture = ExtResource("2_ox5ak")

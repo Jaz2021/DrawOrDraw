@@ -15,9 +15,11 @@ public partial class Globals : Node
 	[Export] public CameraController PlayerCam;
 	[Export] public Node EnvironmentRoot;
 	[Export] private PackedScene InitialMenu;
+	
 	[Export] private PackedScene GameplayScene;
 	[Export] private PackedScene PauseMenu;
 	[Export] private PackedScene StitchChar;
+	[Export] private PackedScene canvasScene;
 	[Export] private PackedScene stageScene;
 	private Scene currentScene = null;
 	private MenuController currentMenu = null;
@@ -72,14 +74,14 @@ public partial class Globals : Node
 		StartGamePacket packet = new(objs, Vector2.Zero); // Temporarily setting 0,0 as the start position
 		GD.Print("Sending start game packet");
 		NetworkingV2.SendPacket(connection, packet, true);
-		SpawnObjectPacket objPacket = new((ulong)connection.steamID, (byte)ObjectType.Player, Vector2.Zero);
-		NetworkingV2.SendPacketToAll(objPacket, true);
-		SpawnObjectPacket.SpawnObjectPacketReceived(objPacket, null);
+		ChangeScene(canvasScene, Vector2.Zero);
+		// SpawnObjectPacket objPacket = new((ulong)connection.steamID, (byte)ObjectType.Player, Vector2.Zero);
+		// NetworkingV2.SendPacketToAll(objPacket, true);
+		// SpawnObjectPacket.SpawnObjectPacketReceived(objPacket, null);
 	}
-	public void StartOnlineGame(StartGamePacket packet, ConnectionManager cnxn)
-	{
-
-		NetworkingV2.Init(true);
+	public void StartOnlineGame()
+    {
+        NetworkingV2.Init(true);
 		if (inGame)
 		{
 			return; // Ignore an extra start game packet
@@ -88,21 +90,24 @@ public partial class Globals : Node
 		{
 			
 		}
-		if ((ulong)NetworkingV2.GetLobbyID() == 0 && cnxn == null)
+		if ((ulong)NetworkingV2.GetLobbyID() == 0)
 		{
 			// We got startgame from ourself and there is no lobby yet.
 			NetworkingV2.CreateLobby();
-			ChangeScene(GameplayScene, packet.StartPosition);
+			ChangeScene(GameplayScene, Vector2.Zero);
 			ChangeMenu(PauseMenu);
 			return;
 		}
-		if ((cnxn == null && NetworkingV2.IsLobbyOwner()) || cnxn.steamID == NetworkingV2.GetLobbyOwner())
-		{
-			// We got the startgame from either ourselves or the lobby owner
-			ChangeScene(GameplayScene, packet.StartPosition, packet.ExistingObjects);
-			ChangeMenu(PauseMenu);
-			return;
-		}
+		// We got the startgame from either ourselves or the lobby owner
+		ChangeScene(GameplayScene, Vector2.Zero, null);
+		ChangeMenu(PauseMenu);
+		return;
+		
+    }
+	public void StartOnlineGame(StartGamePacket packet, ConnectionManager cnxn)
+	{
+
+		ChangeScene(canvasScene, Vector2.Zero);
 	}
 	public void StartOfflineGame()
     {

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo3rr8bfrdhe2"]
+[gd_scene load_steps=7 format=3 uid="uid://bo3rr8bfrdhe2"]
 
 [ext_resource type="Script" uid="uid://cjs6lmqhrjxq0" path="res://Scripts/Globals.cs" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://ba65bybja3enw" path="res://Menus/MainMenu.tscn" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://d33qt55f5fvwx" path="res://Scenes/waiting_for_other_player.tscn" id="3_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dbm8xs3f4osfy" path="res://Objects/Player/StitchedPlayer.tscn" id="4_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://6lg6y02cf3xd" path="res://Scenes/Canvas.tscn" id="5_jw32o"]
 [ext_resource type="PackedScene" uid="uid://of6ubng70q68" path="res://Scenes/TestScene.tscn" id="5_v1gob"]
 
 [node name="Root" type="Node" node_paths=PackedStringArray("SceneRoot", "MenuRoot", "EnvironmentRoot")]
@@ -14,6 +15,7 @@ EnvironmentRoot = NodePath("EnvironmentRoot")
 InitialMenu = ExtResource("2_idj7w")
 GameplayScene = ExtResource("3_pbw6q")
 StitchChar = ExtResource("4_pbw6q")
+canvasScene = ExtResource("5_jw32o")
 stageScene = ExtResource("5_v1gob")
 
 [node name="SceneRoot" type="Node" parent="."]
