@@ -51,9 +51,10 @@ public partial class StitchCharacter : NetObject
 	}
 	public void SetTextures(Dictionary<textName, SpriteArray2D> parts)
 	{
-		GD.Print("Setting tetures");
+		GD.Print($"Setting tetures {parts.Count}");
 		foreach(var (key, part) in parts)
 		{
+			GD.Print(key);
 			switch(key)
 			{
 				case textName.head:

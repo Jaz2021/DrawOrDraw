@@ -352,6 +352,7 @@ public partial class DrawingCanvas : Sprite2D
         currentTextName += 1;
         if(currentTextName >= textNameOrder.Count)
         {
+            GD.Print("Creating stitch character");
             var n = stitchChar.Instantiate<StitchCharacter>();
             n.SetTextures(sprites);
             Globals.Instance.CreateCharacter(n);

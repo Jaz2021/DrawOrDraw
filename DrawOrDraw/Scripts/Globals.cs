@@ -49,7 +49,7 @@ public partial class Globals : Node
     private void SpritePacketReceived(SpritePacket packet, ConnectionManager connection)
     {
 		GD.Print("I have received a sprite packet!");
-        otherPlayerChar = StitchChar.Instantiate<StitchCharacter>();
+        var c = StitchChar.Instantiate<StitchCharacter>();
 		Dictionary<textName, SpriteArray2D> bodyParts = new();
 		bodyParts[textName.head] = packet.headSprite;
 		bodyParts[textName.torso] = packet.torsoSprite;
@@ -58,12 +58,16 @@ public partial class Globals : Node
 		bodyParts[textName.upper_arm] = packet.upperArmSprite;
 		bodyParts[textName.lower_arm] = packet.forearmSprite;
 
-		otherPlayerChar.SetTextures(bodyParts);
+		c.SetTextures(bodyParts);
 		otherPlayerReady = true;
         if (imReady)
         {
 			GD.Print("I was ready!");
             ChangeScene(stageScene, Vector2.Zero);
+			if(currentScene is StageScene s)
+            {
+                s.SpawnStitchedChars(otherPlayerChar, c);
+            }
         }
     }
 
@@ -183,6 +187,10 @@ public partial class Globals : Node
             {
                 s.SpawnStitchedChars(c, otherPlayerChar);
             }
+        } else
+        {
+			GD.Print("Setting other character");
+            otherPlayerChar = c;
         }
 		imReady = true;
 		

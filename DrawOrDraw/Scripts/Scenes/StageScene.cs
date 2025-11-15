@@ -20,6 +20,7 @@ public partial class StageScene : Scene
     {
         this.p1 = p1;
         this.p2 = p2;
+        GD.Print("Spawning stitched charas");
         objectRoot.CallDeferred("add_child", p1);
         objectRoot.CallDeferred("add_child", p2);
         if(NetworkingV2.IsLobbyOwner())
@@ -36,7 +37,15 @@ public partial class StageScene : Scene
             }
 
         }
-        p1.GlobalPosition = p1Start.GlobalPosition;
-        p2.GlobalPosition = p2Start.GlobalPosition;
+        if (NetworkingV2.IsLobbyOwner())
+        {
+            p1.GlobalPosition = p1Start.GlobalPosition;
+            p2.GlobalPosition = p2Start.GlobalPosition;
+        } else
+        {
+            p2.GlobalPosition = p1Start.GlobalPosition;
+            p1.GlobalPosition = p2Start.GlobalPosition;
+        }
+        
     }
 }
