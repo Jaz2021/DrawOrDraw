@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="ExampleProject"
+config/name="DrawOrDraw"
 run/main_scene="uid://bo3rr8bfrdhe2"
 config/features=PackedStringArray("4.5", "C#")
 config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="ExampleProject"
+project/assembly_name="DrawOrDraw"
 
 [input]
 

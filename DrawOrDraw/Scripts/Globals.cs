@@ -41,9 +41,9 @@ public partial class Globals : Node
 	{
 		List<ObjectStruct> objStructs = new();
 		foreach(var obj in currentScene.objects)
-        {
+		{
 			objStructs.Add(new(obj.id, obj.Position, obj.Rotation, obj.type));
-        }
+		}
 		ObjectStructList objs = new(objStructs.ToArray());
 		StartGamePacket packet = new(objs, Vector3.Zero, Vector3.Zero); // Temporarily setting 0,0 as the start position
 		GD.Print("Sending start game packet");
@@ -51,7 +51,7 @@ public partial class Globals : Node
 		SpawnObjectPacket objPacket = new((ulong)connection.steamID, (byte)ObjectType.Player, Vector3.Zero, Vector3.Zero);
 		NetworkingV2.SendPacketToAll(objPacket, true);
 		SpawnObjectPacket.SpawnObjectPacketReceived(objPacket, null);
-    }
+	}
 	public void StartOnlineGame(StartGamePacket packet, ConnectionManager cnxn)
 	{
 
@@ -60,10 +60,10 @@ public partial class Globals : Node
 		{
 			return; // Ignore an extra start game packet
 		}
-        if (NetworkingV2.isInit)
-        {
-            
-        }
+		if (NetworkingV2.isInit)
+		{
+			
+		}
 		if ((ulong)NetworkingV2.GetLobbyID() == 0 && cnxn == null)
 		{
 			// We got startgame from ourself and there is no lobby yet.
@@ -81,10 +81,10 @@ public partial class Globals : Node
 		}
 	}
 	public void StartOfflineGame()
-    {
+	{
 		ChangeScene(GameplayScene, Vector3.Zero, Vector3.Zero);
 		ChangeMenu(PauseMenu);
-    }
+	}
 	public override void _ExitTree()
 	{
 		GD.PrintErr("Warning, Globals was freed, something has probably gone wrong");
@@ -101,9 +101,9 @@ public partial class Globals : Node
 			currentScene.EnterScene(objs, position, rotation);
 			PlayerCam.Visible = true;
 		} else
-        {
+		{
 			PlayerCam.Visible = false;
-        }
+		}
 	}
 	public void ChangeMenu(PackedScene newMenu)
 	{
@@ -121,11 +121,11 @@ public partial class Globals : Node
 		currentEnv.Enter();
 		EnvironmentRoot.AddChild(currentEnv);
 	}
-    public override void _Process(double delta)
-    {
-        if (NetworkingV2.isInit)
-        {
+	public override void _Process(double delta)
+	{
+		if (NetworkingV2.isInit)
+		{
 			SteamAPI.RunCallbacks();
-        }
-    }
+		}
+	}
 }
