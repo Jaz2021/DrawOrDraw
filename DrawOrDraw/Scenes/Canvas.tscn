@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://6lg6y02cf3xd"]
+
+[ext_resource type="Script" uid="uid://clo76t4hsrfr6" path="res://Scripts/Canvas/DrawingCanvas.cs" id="1_53v2k"]
+[ext_resource type="Texture2D" uid="uid://bctpy8ym1ifa5" path="res://sprite_textures/Canvas.png" id="1_im200"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(10, 10)
+texture = ExtResource("1_im200")
+script = ExtResource("1_53v2k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
