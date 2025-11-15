@@ -42,16 +42,16 @@ public partial class Globals : Node
 		List<ObjectStruct> objStructs = new();
 		foreach(var obj in currentScene.objects)
         {
-			objStructs.Add(new(obj.id, obj.Position, obj.Rotation, obj.type));
+			objStructs.Add(new(obj.id, obj.Position, obj.type));
         }
 		ObjectStructList objs = new(objStructs.ToArray());
-		StartGamePacket packet = new(objs, Vector3.Zero, Vector3.Zero); // Temporarily setting 0,0 as the start position
+		StartGamePacket packet = new(objs, Vector2.Zero); // Temporarily setting 0,0 as the start position
 		GD.Print("Sending start game packet");
 		NetworkingV2.SendPacket(connection, packet, true);
-		SpawnObjectPacket objPacket = new((ulong)connection.steamID, (byte)ObjectType.Player, Vector3.Zero, Vector3.Zero);
+		SpawnObjectPacket objPacket = new((ulong)connection.steamID, (byte)ObjectType.Player, Vector2.Zero);
 		NetworkingV2.SendPacketToAll(objPacket, true);
 		SpawnObjectPacket.SpawnObjectPacketReceived(objPacket, null);
-    }
+	}
 	public void StartOnlineGame(StartGamePacket packet, ConnectionManager cnxn)
 	{
 
@@ -60,37 +60,37 @@ public partial class Globals : Node
 		{
 			return; // Ignore an extra start game packet
 		}
-        if (NetworkingV2.isInit)
-        {
-            
-        }
+		if (NetworkingV2.isInit)
+		{
+			
+		}
 		if ((ulong)NetworkingV2.GetLobbyID() == 0 && cnxn == null)
 		{
 			// We got startgame from ourself and there is no lobby yet.
 			NetworkingV2.CreateLobby();
-			ChangeScene(GameplayScene, packet.StartPosition, packet.StartRotation);
+			ChangeScene(GameplayScene, packet.StartPosition);
 			ChangeMenu(PauseMenu);
 			return;
 		}
 		if ((cnxn == null && NetworkingV2.IsLobbyOwner()) || cnxn.steamID == NetworkingV2.GetLobbyOwner())
 		{
 			// We got the startgame from either ourselves or the lobby owner
-			ChangeScene(GameplayScene, packet.StartPosition, packet.StartRotation, packet.ExistingObjects);
+			ChangeScene(GameplayScene, packet.StartPosition, packet.ExistingObjects);
 			ChangeMenu(PauseMenu);
 			return;
 		}
 	}
 	public void StartOfflineGame()
     {
-		ChangeScene(GameplayScene, Vector3.Zero, Vector3.Zero);
+		ChangeScene(GameplayScene, Vector2.Zero);
 		ChangeMenu(PauseMenu);
-    }
+	}
 	public override void _ExitTree()
 	{
 		GD.PrintErr("Warning, Globals was freed, something has probably gone wrong");
 		Instance = null;
 	}
-	public void ChangeScene(PackedScene newScene, Vector3 position, Vector3 rotation, ObjectStructList objs = null)
+	public void ChangeScene(PackedScene newScene, Vector2 position, ObjectStructList objs = null)
 	{
 		// All scenes must have a parent node that implements IScene.
 		currentScene?.QueueFree();
@@ -98,12 +98,12 @@ public partial class Globals : Node
 		{
 			currentScene = newScene.Instantiate<Scene>();
 			SceneRoot.AddChild(currentScene);
-			currentScene.EnterScene(objs, position, rotation);
+			currentScene.EnterScene(objs, position);
 			PlayerCam.Visible = true;
 		} else
-        {
+		{
 			PlayerCam.Visible = false;
-        }
+		}
 	}
 	public void ChangeMenu(PackedScene newMenu)
 	{
@@ -121,11 +121,15 @@ public partial class Globals : Node
 		currentEnv.Enter();
 		EnvironmentRoot.AddChild(currentEnv);
 	}
+	public void CreateCharacter(StitchCharacter c)
+    {
+        
+    }
     public override void _Process(double delta)
     {
         if (NetworkingV2.isInit)
         {
 			SteamAPI.RunCallbacks();
-        }
-    }
+		}
+	}
 }

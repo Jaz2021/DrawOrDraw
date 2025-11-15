@@ -3,23 +3,20 @@ using Godot;
 
 public struct ObjectStruct
 {
-    public ObjectStruct(ulong id, Vector3 position, Vector3 rotation, ObjectType objectType)
+    public ObjectStruct(ulong id, Vector2 position, ObjectType objectType)
     {
         this.id = id;
         this.position = position;
-        this.rotation = rotation;
         objType = objectType;
     }
     public readonly ulong id;
-    public readonly Vector3 position;
-    public readonly Vector3 rotation;
+    public readonly Vector2 position;
     public readonly ObjectType objType;
     public byte[] Serialize()
     {
         return [
             ..id.Serialize(),
             ..position.Serialize(),
-            ..rotation.Serialize(),
             (byte)objType
         ];
     }

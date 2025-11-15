@@ -97,6 +97,12 @@ public static class PtrConverter
         return new(x, y, z);
 
     }
+    public static Vector2 GetVector2(IntPtr packet, ref int start)
+    {
+        var x = GetFloat(packet, ref start);
+        var y = GetFloat(packet, ref start);
+        return new(x, y);
+    }
     public static CSteamID GetCSteamID(IntPtr packet, ref int start)
     {
         return (CSteamID)GetULong(packet, ref start);
@@ -135,10 +141,9 @@ public static class PtrConverter
     public static ObjectStruct GetObjectStruct(IntPtr packet, ref int start)
     {
         ulong id = GetULong(packet, ref start);
-        Vector3 position = GetVector3(packet, ref start);
-        Vector3 rotation = GetVector3(packet, ref start);
+        Vector2 position = GetVector2(packet, ref start);
         ObjectType type = (ObjectType)GetByte(packet, ref start);
-        return new(id, position, rotation, type);
+        return new(id, position, type);
     }
     public static ObjectStructList GetObjectStructList(IntPtr packet, ref int start)
     {

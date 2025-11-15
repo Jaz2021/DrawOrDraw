@@ -1,33 +1,19 @@
 using Godot;
 using Networking_V2;
+using Steamworks;
 using System;
 
 public partial class MainPlayer : Node
 {
     private PlayerObject myObj;
-    [Export] private Vector3 CameraOffset;
-    [Export] private float moveSpeedForward;
-    [Export] private float moveSpeedLR;
-    [Export] private float sprintMult;
+    [Export] private float groundAccel;
+    [Export] private float airAccel;
     [Export] private float JumpForce;
-    [Export] private float lookSens = 0.001f;
-    public float friction
-    {
-        get
-        {
-            return myObj.PhysicsMaterialOverride.Friction;
-        }
-        set
-        {
-            myObj.PhysicsMaterialOverride.Friction = value;
-        }
-    }
-    private Vector3 moveDir = Vector3.Zero;
-    private Vector2 lookDir = Vector2.Zero;
+    private Vector2 moveDir = Vector2.Zero;
+    
     public void SetPlayerObject(PlayerObject pobj)
     {
         myObj = pobj; // Set the player object that we update every tick
-        pobj.GetChild<MeshInstance3D>(0).Visible = false;
         Input.MouseMode = Input.MouseModeEnum.Captured;
         // myObj.PhysicsMaterialOverride = new();
         // myObj.PhysicsMaterialOverride.Rough = true;
@@ -39,20 +25,17 @@ public partial class MainPlayer : Node
         {
             return;
         }
-        if(Input.MouseMode == Input.MouseModeEnum.Captured)
-        {
-            Globals.Instance.PlayerCam.AddRotation(lookDir * lookSens);
-        }
-        lookDir = Vector2.Zero;
-        Globals.Instance.PlayerCam.GlobalPosition = myObj.GlobalPosition + CameraOffset;
+
         // Handle our inputs
         Vector2 inputDir = Vector2.Zero;
-        if (!myObj.Grounded)
-        {
-            return;
-        }
+        // if (!myObj.Grounded)
+        // {
+        //     return;
+        // }
         if (Input.IsActionPressed("MoveForward"))
         {
+            GD.Print("Forward pressed");
+
             inputDir.Y = -1f;
             // moveDir.Z -= moveSpeedForward * (float)delta;
         }
@@ -74,15 +57,14 @@ public partial class MainPlayer : Node
         
 
         inputDir = inputDir.Normalized();
-        inputDir = new(inputDir.X * (float)delta * moveSpeedLR, inputDir.Y * (float)delta * moveSpeedForward);
-        // GD.Print($"Input Dir before: {inputDir}");
-        inputDir = inputDir.Rotated(-Globals.Instance.PlayerCam.GetLookDir());
-        if (Input.IsActionPressed("Sprint"))    
+        if(myObj.Grounded)
         {
-            inputDir *= sprintMult;
+            inputDir = new(inputDir.X * (float)delta * groundAccel, 0f);
+        } else
+        {
+            inputDir = new(inputDir.X * (float)delta * airAccel, 0f);
         }
-        // GD.Print($"Input Dir after: {inputDir}");
-        moveDir += new Vector3(inputDir.X, 0, inputDir.Y);
+        moveDir += inputDir;
         // GD.Print($"Movedir: {moveDir}, velocity: {myObj.LinearVelocity}");
         
     }
@@ -90,7 +72,6 @@ public partial class MainPlayer : Node
     {
         if(e is InputEventMouseMotion m)
         {
-            lookDir += m.ScreenRelative;
             return;
         }
         if (e.IsActionPressed("Interact"))
@@ -114,21 +95,18 @@ public partial class MainPlayer : Node
             // GD.Print("Checking if on ground");
             if (myObj.Grounded && moveDir.Y == 0)
             {
-                // GD.Print("Jumping");
-                moveDir.Y += JumpForce;
+                moveDir.Y = -JumpForce;
             }
         }
-        // myObj.AddConstantCentralForce(moveDir);
-        myObj.Rotation = new(0f, Globals.Instance.PlayerCam.GetLookDir(), 0f);
-        myObj.ApplyCentralForce(moveDir);
-        moveDir = Vector3.Zero;
+        myObj.Velocity += moveDir;
+        moveDir = Vector2.Zero;
         SendPacket();
     }
     private void SendPacket()
     {
-        if(NetworkingV2.isInit)
+        if(NetworkingV2.isInit && NetworkingV2.GetLobbyID() != (CSteamID)0)
         {
-            PlayerPacket packet = new(myObj.AngularVelocity, myObj.id, myObj.Position, myObj.Rotation, myObj.AngularVelocity);
+            PlayerPacket packet = new(myObj.id, myObj.Position, myObj.Velocity);
             NetworkingV2.SendPacketToAll(packet);
         }
     }

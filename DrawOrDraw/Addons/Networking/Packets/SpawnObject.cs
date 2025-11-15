@@ -14,9 +14,7 @@ public partial class SpawnObjectPacket : IPacket<SpawnObjectPacket>
         }
     }
     [SerializeData]
-    public Vector3 position;
-    [SerializeData]
-    public Vector3 rotation;
+    public Vector2 position;
     [SerializeData]
     public ulong id;
 }
