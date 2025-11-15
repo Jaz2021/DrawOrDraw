@@ -180,6 +180,7 @@ public partial class Globals : Node
                 s.SpawnStitchedChars(c, otherPlayerChar);
             }
         }
+		imReady = true;
 		
     }
     public override void _Process(double delta)
