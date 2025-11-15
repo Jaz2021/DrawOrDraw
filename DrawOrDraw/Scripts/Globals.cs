@@ -50,15 +50,19 @@ public partial class Globals : Node
     {
 		GD.Print("I have received a sprite packet!");
         otherPlayerChar = StitchChar.Instantiate<StitchCharacter>();
-		otherPlayerChar.bodyParts[textName.head] = packet.headSprite;
-		otherPlayerChar.bodyParts[textName.torso] = packet.torsoSprite;
-		otherPlayerChar.bodyParts[textName.shin] = packet.shinSprite;
-		otherPlayerChar.bodyParts[textName.thigh] = packet.thighSprite;
-		otherPlayerChar.bodyParts[textName.upper_arm] = packet.upperArmSprite;
-		otherPlayerChar.bodyParts[textName.lower_arm] = packet.forearmSprite;
+		Dictionary<textName, SpriteArray2D> bodyParts = new();
+		bodyParts[textName.head] = packet.headSprite;
+		bodyParts[textName.torso] = packet.torsoSprite;
+		bodyParts[textName.shin] = packet.shinSprite;
+		bodyParts[textName.thigh] = packet.thighSprite;
+		bodyParts[textName.upper_arm] = packet.upperArmSprite;
+		bodyParts[textName.lower_arm] = packet.forearmSprite;
+
+		otherPlayerChar.SetTextures(bodyParts);
 		otherPlayerReady = true;
         if (imReady)
         {
+			GD.Print("I was ready!");
             ChangeScene(stageScene, Vector2.Zero);
         }
     }
