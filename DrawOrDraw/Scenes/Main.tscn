@@ -22,9 +22,7 @@ PauseMenu = ExtResource("4_rgh2o")
 
 [node name="EnvironmentRoot" type="Node" parent="."]
 
-[node name="CameraRoot" type="Node3D" parent="."]
+[node name="CameraRoot" type="Node2D" parent="."]
 script = ExtResource("5_pbw6q")
 
-[node name="PlayerCam" type="Camera3D" parent="CameraRoot"]
-visible = false
-current = true
+[node name="Camera2D" type="Camera2D" parent="CameraRoot"]

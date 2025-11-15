@@ -5,9 +5,7 @@ namespace Networking_V2;
 public partial class StartGamePacket : IPacket<StartGamePacket>
 {
     [SerializeData]
-    public Vector3 StartPosition;
-    [SerializeData]
-    public Vector3 StartRotation;
+    public Vector2 StartPosition;
     [SerializeData]
     public ObjectStructList ExistingObjects;
 }

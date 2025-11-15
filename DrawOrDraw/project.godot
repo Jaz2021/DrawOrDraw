@@ -15,6 +15,12 @@ run/main_scene="uid://bo3rr8bfrdhe2"
 config/features=PackedStringArray("4.5", "C#")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="DrawOrDraw"

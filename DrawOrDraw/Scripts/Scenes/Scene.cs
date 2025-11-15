@@ -4,7 +4,7 @@ using Networking_V2;
 
 public partial class Scene : Node
 {
-    [Export] private Node3D objectRoot; // ObjectRoot should move according to the lobby owner's position. 
+    [Export] private Node2D objectRoot; // ObjectRoot should move according to the lobby owner's position. 
     [Export] private MainPlayer playerController;
     [Export] private Godot.Collections.Dictionary<ObjectType, PackedScene> objectPrefabs;
     public List<NetObject> objects = new();
@@ -24,33 +24,33 @@ public partial class Scene : Node
             return;
         }
         NetObject obj = objectPrefabs[packet.ObjType].Instantiate<NetObject>();
-        obj.Init(packet.id, packet.ObjType, objectRoot, packet.position, packet.rotation);
+        obj.Init(packet.id, packet.ObjType, objectRoot, packet.position);
         objectRoot.CallDeferred("add_child", obj);
         objects.Add(obj);
 
     }
-    public void SpawnObject(ObjectType type, ulong id, Vector3 position, Vector3 rotation, bool send = false)
+    public void SpawnObject(ObjectType type, ulong id, Vector2 position, bool send = false)
     {
         NetObject netobj = objectPrefabs[type].Instantiate<NetObject>();
-        netobj.Init(id, type, objectRoot, position, rotation);
+        netobj.Init(id, type, objectRoot, position);
         objectRoot.CallDeferred("add_child", netobj);
         objects.Add(netobj);
         if (send)
         {
-            SpawnObjectPacket packet = new(id, (byte)type, position, rotation);
+            SpawnObjectPacket packet = new(id, (byte)type, position);
             NetworkingV2.SendPacketToAll(packet, true);
         }
     }
-    public void EnterScene(ObjectStructList objectSpawns, Vector3 position, Vector3 rotation)
+    public void EnterScene(ObjectStructList objectSpawns, Vector2 position)
     {
         PlayerObject myPlayer = objectPrefabs[ObjectType.Player].Instantiate<PlayerObject>();
         if (NetworkingV2.isInit)
         {
-            myPlayer.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, position, rotation);
+            myPlayer.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, position);
         }
         else
         {
-            myPlayer.Init(0, ObjectType.Player, objectRoot, position, rotation);
+            myPlayer.Init(0, ObjectType.Player, objectRoot, position);
         }
         objectRoot.CallDeferred("add_child", myPlayer);
         playerController.SetPlayerObject(myPlayer);
@@ -61,7 +61,7 @@ public partial class Scene : Node
         }
         foreach(var obj in objectSpawns.objs)
         {
-            SpawnObject(obj.objType, obj.id, obj.position, obj.rotation);
+            SpawnObject(obj.objType, obj.id, obj.position);
         }
     }
 }
