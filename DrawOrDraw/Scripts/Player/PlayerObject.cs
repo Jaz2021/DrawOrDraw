@@ -2,43 +2,6 @@ using Godot;
 using Networking_V2;
 public partial class PlayerObject : NetObject
 {
-	public enum Attacks {
-		NeutralTilt,
-		ForwardTilt,
-		DownTilt,
-		UpTilt,
-		NeutralAir,
-		ForwardAir,
-		UpAir,
-		DownAir,
-		UpSpecial,
-		DownSpecial,
-		NeutralSpecial,
-		ForwardSpecial
-	}
 	
-	public override void _Ready()
-	{
-		PlayerPacket.PlayerPacketReceived += PlayerPacketReceived;
-	}
-	private void PlayerPacketReceived(PlayerPacket packet, ConnectionManager connection)
-	{
-		// GD.Print($"Received player packet with id: {packet.id}, my id: {id}");
-		if (connection != null)
-		{
-			if (id == (ulong)NetworkingV2.steamID && connection.steamID != NetworkingV2.GetLobbyOwner())
-			{
-				// If you are receiving for your own player and it is coming from not the lobby owner, ignore it
-				return;
-			}
-		}
-		// Received packet from myself or the lobby owner, so listen to it
-		if (id == packet.id)
-		{
-			pos = packet.position;
-			vel = packet.velocity;
-			ReceivedUpdate = true;
-		}
-	}
 
 }

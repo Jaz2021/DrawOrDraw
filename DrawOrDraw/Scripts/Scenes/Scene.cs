@@ -4,8 +4,8 @@ using Networking_V2;
 
 public partial class Scene : Node
 {
-    [Export] private Node2D objectRoot; // ObjectRoot should move according to the lobby owner's position. 
-    [Export] private MainPlayer playerController;
+    [Export] public Node2D objectRoot; // ObjectRoot should move according to the lobby owner's position. 
+    [Export] protected MainPlayer playerController;
     [Export] private Godot.Collections.Dictionary<ObjectType, PackedScene> objectPrefabs;
     public List<NetObject> objects = new();
     public override void _Ready()
@@ -43,25 +43,25 @@ public partial class Scene : Node
     }
     public virtual void EnterScene(ObjectStructList objectSpawns, Vector2 position)
     {
-        PlayerObject myPlayer = objectPrefabs[ObjectType.Player].Instantiate<PlayerObject>();
-        if (NetworkingV2.isInit)
-        {
-            myPlayer.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, position);
-        }
-        else
-        {
-            myPlayer.Init(0, ObjectType.Player, objectRoot, position);
-        }
-        objectRoot.CallDeferred("add_child", myPlayer);
-        playerController.SetPlayerObject(myPlayer);
-        objects.Add(myPlayer);
-        if (objectSpawns == null)
-        {
-            return;
-        }
-        foreach(var obj in objectSpawns.objs)
-        {
-            SpawnObject(obj.objType, obj.id, obj.position);
-        }
+        // PlayerObject myPlayer = objectPrefabs[ObjectType.Player].Instantiate<PlayerObject>();
+        // if (NetworkingV2.isInit)
+        // {
+        //     myPlayer.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, position);
+        // }
+        // else
+        // {
+        //     myPlayer.Init(0, ObjectType.Player, objectRoot, position);
+        // }
+        // objectRoot.CallDeferred("add_child", myPlayer);
+        // playerController.SetPlayerObject(myPlayer);
+        // objects.Add(myPlayer);
+        // if (objectSpawns == null)
+        // {
+        //     return;
+        // }
+        // foreach(var obj in objectSpawns.objs)
+        // {
+        //     SpawnObject(obj.objType, obj.id, obj.position);
+        // }
     }
 }

@@ -1,17 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://of6ubng70q68"]
+[gd_scene load_steps=4 format=3 uid="uid://of6ubng70q68"]
 
-[ext_resource type="Script" uid="uid://cfchhj7wn1u4x" path="res://Scripts/Scenes/Scene.cs" id="1_8k7wh"]
-[ext_resource type="PackedScene" uid="uid://dpqlnenu1cphm" path="res://Objects/Player/Player.tscn" id="2_5lt6y"]
+[ext_resource type="Script" uid="uid://bhjsbyl8vaiwx" path="res://Scripts/Scenes/StageScene.cs" id="1_8k7wh"]
 [ext_resource type="Script" uid="uid://b4k4nqwvm4jgy" path="res://Scripts/Player/MainPlayer.cs" id="3_8k7wh"]
 [ext_resource type="PackedScene" uid="uid://bhebw2xt4df18" path="res://arenas/platform_arena.tscn" id="4_iufkg"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("objectRoot", "playerController")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("p1Start", "p2Start", "objectRoot", "playerController")]
 script = ExtResource("1_8k7wh")
+p1Start = NodePath("Node2D")
+p2Start = NodePath("Node2D2")
 objectRoot = NodePath("ObjectRoot")
 playerController = NodePath("PlayerController")
-objectPrefabs = Dictionary[int, PackedScene]({
-0: ExtResource("2_5lt6y")
-})
 
 [node name="ObjectRoot" type="Node2D" parent="."]
 
@@ -22,3 +20,9 @@ airAccel = 100.0
 JumpForce = 69.0
 
 [node name="FlatArena" parent="." instance=ExtResource("4_iufkg")]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-686, -127)
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(690, -111)

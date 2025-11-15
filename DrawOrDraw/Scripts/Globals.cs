@@ -17,11 +17,15 @@ public partial class Globals : Node
 	[Export] private PackedScene InitialMenu;
 	[Export] private PackedScene GameplayScene;
 	[Export] private PackedScene PauseMenu;
+	[Export] private PackedScene StitchChar;
+	[Export] private PackedScene stageScene;
 	private Scene currentScene = null;
 	private MenuController currentMenu = null;
 	private Env currentEnv = null;
 	private bool inGame = false;
-	private bool otherPlayerReady = false;
+	private bool otherPlayerReady = true;
+	private bool imReady = false;
+	private StitchCharacter otherPlayerChar;
 	// No initial scene, that will get loaded once the player starts the game
 	public override void _Ready()
 	{
@@ -37,9 +41,26 @@ public partial class Globals : Node
 		ChangeMenu(InitialMenu);
 		NetworkingV2.Init(false);
 		StartGamePacket.StartGamePacketReceived += StartOnlineGame;
-		ReadyPacket.ReadyPacketReceived += ReadyPacketReceived;
+		SpritePacket.SpritePacketReceived += SpritePacketReceived;
 	}
-	public void SendStartGamePacket(ConnectionManager connection)
+
+    private void SpritePacketReceived(SpritePacket packet, ConnectionManager connection)
+    {
+        otherPlayerChar = StitchChar.Instantiate<StitchCharacter>();
+		otherPlayerChar.bodyParts[textName.head] = packet.headSprite;
+		otherPlayerChar.bodyParts[textName.torso] = packet.torsoSprite;
+		otherPlayerChar.bodyParts[textName.shin] = packet.shinSprite;
+		otherPlayerChar.bodyParts[textName.thigh] = packet.thighSprite;
+		otherPlayerChar.bodyParts[textName.upper_arm] = packet.upperArmSprite;
+		otherPlayerChar.bodyParts[textName.lower_arm] = packet.forearmSprite;
+		otherPlayerReady = true;
+        if (imReady)
+        {
+            ChangeScene(stageScene, Vector2.Zero);
+        }
+    }
+
+    public void SendStartGamePacket(ConnectionManager connection)
 	{
 		List<ObjectStruct> objStructs = new();
 		foreach(var obj in currentScene.objects)
@@ -101,16 +122,21 @@ public partial class Globals : Node
 			currentScene = newScene.Instantiate<Scene>();
 			SceneRoot.AddChild(currentScene);
 			currentScene.EnterScene(objs, position);
-			PlayerCam.Visible = true;
+			// PlayerCam.Visible = true;
 		} else
 		{
-			PlayerCam.Visible = false;
+			// PlayerCam.Visible = false;
 		}
 	}
 	public void ChangeMenu(PackedScene newMenu)
 	{
 		// All menus must have a parent node that implements MenuController
+		
 		currentMenu?.QueueFree();
+		if(newMenu == null)
+        {
+            return;
+        }
 		currentMenu = newMenu.Instantiate<MenuController>();
 		MenuRoot.AddChild(currentMenu);
 		currentMenu.EnterMenu();
@@ -123,19 +149,20 @@ public partial class Globals : Node
 		currentEnv.Enter();
 		EnvironmentRoot.AddChild(currentEnv);
 	}
-	private void ReadyPacketReceived(ReadyPacket packet, ConnectionManager connection)
-    {
-        otherPlayerReady = true;
-    }
 	public void CreateCharacter(StitchCharacter c)
     {
-        ReadyPacket r = new();
-		NetworkingV2.SendPacketToAll(r, true); // Tell the other player we are ready
+		GD.Print("Creating characters");
+        SpritePacket packet = new(c.bodyParts[textName.lower_arm], c.bodyParts[textName.head], c.bodyParts[textName.shin], c.bodyParts[textName.thigh], c.bodyParts[textName.torso], c.bodyParts[textName.upper_arm]);
+		NetworkingV2.SendPacketToAll(packet, true);
         if (otherPlayerReady)
         {
-            SpritePacket packet = new(c.bodyParts[textName.lower_arm], c.bodyParts[textName.head], c.bodyParts[textName.shin], c.bodyParts[textName.thigh], c.bodyParts[textName.torso], c.bodyParts[textName.upper_arm]);
-			NetworkingV2.SendPacketToAll(packet, true);
+            ChangeScene(stageScene, Vector2.Zero);
+			if(currentScene is StageScene s)
+            {
+                s.SpawnStitchedChars(c, otherPlayerChar);
+            }
         }
+		
     }
     public override void _Process(double delta)
     {

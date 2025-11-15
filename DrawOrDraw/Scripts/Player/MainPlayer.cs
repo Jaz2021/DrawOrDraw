@@ -5,13 +5,13 @@ using System;
 
 public partial class MainPlayer : Node
 {
-    private PlayerObject myObj;
+    private StitchCharacter myObj;
     [Export] private float groundAccel;
     [Export] private float airAccel;
     [Export] private float JumpForce;
     private Vector2 moveDir = Vector2.Zero;
     
-    public void SetPlayerObject(PlayerObject pobj)
+    public void SetPlayerObject(StitchCharacter pobj)
     {
         myObj = pobj; // Set the player object that we update every tick
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -90,6 +90,10 @@ public partial class MainPlayer : Node
     }
     public override void _PhysicsProcess(double delta)
     {
+        if(myObj == null)
+        {
+            return;
+        }
         if (Input.IsActionPressed("Jump"))
         {
             // GD.Print("Checking if on ground");

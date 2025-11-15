@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://d33qt55f5fvwx"]
+
+[ext_resource type="Script" uid="uid://dcsorxwf77cf6" path="res://Scripts/Scenes/WaitingScene.cs" id="1_22uql"]
+[ext_resource type="PackedScene" uid="uid://6lg6y02cf3xd" path="res://Scenes/Canvas.tscn" id="2_4y3e5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6q6w"]
+font_size = 48
+
+[node name="WaitingForOtherPlayer" type="Node2D"]
+script = ExtResource("1_22uql")
+CanvasScene = ExtResource("2_4y3e5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1012.0
+offset_top = 487.0
+offset_right = 1052.0
+offset_bottom = 527.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 259.0
+offset_right = 307.0
+offset_bottom = 498.0
+toggle_mode = true
+text = "Force Game Start"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -384.0
+offset_top = -45.0
+offset_right = 394.0
+offset_bottom = 22.0
+text = "Waiting For Other Player To Join..."
+label_settings = SubResource("LabelSettings_a6q6w")
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="BeginGame"]

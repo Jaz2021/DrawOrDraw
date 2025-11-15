@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://6lg6y02cf3xd"]
+[gd_scene load_steps=25 format=3 uid="uid://6lg6y02cf3xd"]
 
+[ext_resource type="Script" uid="uid://c31w1fju0cqei" path="res://Scripts/Scenes/CanvasScene.cs" id="1_0r78b"]
 [ext_resource type="Script" uid="uid://clo76t4hsrfr6" path="res://Scripts/Canvas/DrawingCanvas.cs" id="1_53v2k"]
-[ext_resource type="Script" uid="uid://cfchhj7wn1u4x" path="res://Scripts/Scenes/Scene.cs" id="1_vf7j4"]
 [ext_resource type="Texture2D" uid="uid://bkhjb45t38ajy" path="res://sprite_textures/canvas48.png" id="2_ox5ak"]
 [ext_resource type="Texture2D" uid="uid://bvrkouox4wax7" path="res://sprite_textures/pencil_selected.png" id="3_bcll6"]
+[ext_resource type="PackedScene" uid="uid://dbm8xs3f4osfy" path="res://Objects/Player/StitchedPlayer.tscn" id="4_0r78b"]
 [ext_resource type="Texture2D" uid="uid://dl14r5yx0s0th" path="res://sprite_textures/pencil_unselected.png" id="4_qjf80"]
 [ext_resource type="Texture2D" uid="uid://br25c20e4wbt4" path="res://sprite_textures/eraser_selected.png" id="5_wqmdm"]
 [ext_resource type="Texture2D" uid="uid://bvspla6wwhpyt" path="res://sprite_textures/eraser_unselected.png" id="6_af40i"]
@@ -29,11 +30,8 @@
 bg_color = Color(1, 1, 1, 1)
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("objectRoot")]
-script = ExtResource("1_vf7j4")
+script = ExtResource("1_0r78b")
 objectRoot = NodePath("ObjectRoot")
-objectPrefabs = Dictionary[int, PackedScene]({
-0: null
-})
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -45,6 +43,7 @@ texture_filter = 1
 scale = Vector2(10, 10)
 texture = ExtResource("2_ox5ak")
 script = ExtResource("1_53v2k")
+stitchChar = ExtResource("4_0r78b")
 backgroundSprite = NodePath("../Sprite2D2")
 label = NodePath("../Camera2D/Label")
 SelectedPencil = ExtResource("3_bcll6")

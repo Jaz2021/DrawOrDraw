@@ -4,6 +4,7 @@ using Networking_V2;
 
 public partial class CanvasScene : Scene
 {
+    
     public override void _Ready()
     {
 
