@@ -139,10 +139,12 @@ public partial class DrawingCanvas : Sprite2D
                     GD.Print($"Drawing at {i}, {j}");
                     break;
                 case Pen.eraser:
-                    canvas.Pixels[i][j].r = 255;
-                    canvas.Pixels[i][j].g = 255;
-                    canvas.Pixels[i][j].b = 255;
-                    canvas.Pixels[i][j].a = 0;
+                    setColors(i, j, 255, 255, 255, 0);
+                    if (line == lineThickness.three)
+                    {
+                        setSurroundingColors(i, j, 255, 255, 255, 0);
+                    }
+
                     var image = canvas.CreateImage();
                     var text = ImageTexture.CreateFromImage(image);
                     Texture = text;
@@ -180,18 +182,17 @@ public partial class DrawingCanvas : Sprite2D
         {
             case penColor.black:
                 setColors(i, j, 0, 0, 0, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three)
                 {
                     setSurroundingColors(i, j, 0, 0, 0, 255);
                 }
-
                 img = canvas.CreateImage();
                 texture = ImageTexture.CreateFromImage(img);
                 Texture = texture;
                 break;
             case penColor.red:
                 setColors(i, j, 255, 0, 0, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three)
                 {
                     setSurroundingColors(i, j, 255, 0, 0, 255);
                 }
@@ -201,7 +202,7 @@ public partial class DrawingCanvas : Sprite2D
                 break;
             case penColor.green:
                 setColors(i, j, 0, 150, 0, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three)
                 {
                     setSurroundingColors(i, j, 0, 150, 0, 255);
                 }
@@ -211,7 +212,7 @@ public partial class DrawingCanvas : Sprite2D
                 break;
             case penColor.blue:
                 setColors(i, j, 0, 0, 255, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three )
                 {
                     setSurroundingColors(i, j, 0, 0, 255, 255);
                 }
@@ -221,7 +222,7 @@ public partial class DrawingCanvas : Sprite2D
                 break;
             case penColor.purple:
                 setColors(i, j, 175, 0, 200, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three)
                 {
                     setSurroundingColors(i, j, 175, 0, 200, 255);
                 }
@@ -231,7 +232,7 @@ public partial class DrawingCanvas : Sprite2D
                 break;
             case penColor.brown:
                 setColors(i, j, 159, 75, 0, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three)
                 {
                     setSurroundingColors(i, j, 159, 75, 0, 255);
                 }
@@ -241,7 +242,7 @@ public partial class DrawingCanvas : Sprite2D
                 break;
             case penColor.grey:
                 setColors(i, j, 125, 125, 125, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three)
                 {
                     setSurroundingColors(i, j, 125, 125, 125, 255);
                 }
@@ -251,7 +252,7 @@ public partial class DrawingCanvas : Sprite2D
                 break;
             case penColor.orange:
                 setColors(i, j, 255, 140, 0, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three )
                 {
                     setSurroundingColors(i, j, 255, 140, 0, 255);
                 }
@@ -261,7 +262,7 @@ public partial class DrawingCanvas : Sprite2D
                 break;
             case penColor.yellow:
                 setColors(i, j, 255, 255, 0, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three)
                 {
                     setSurroundingColors(i, j, 255, 255, 0, 255);
                 }
@@ -271,7 +272,7 @@ public partial class DrawingCanvas : Sprite2D
                 break;
             case penColor.pink:
                 setColors(i, j, 255, 102, 179, 255);
-                if (line == lineThickness.three || line == lineThickness.five)
+                if (line == lineThickness.three)
                 {
                     setSurroundingColors(i, j, 255, 102, 179, 255);
                 }
