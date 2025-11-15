@@ -7,7 +7,6 @@ public partial class StitchCharacter : NetObject
 	[Export] private Sprite2D Head, Torso, LeftUpperArm, LeftForearm, RightUpperArm, RightForearm, LeftThigh, LeftShin, RightThigh, RightShin;
 	[Export] private Node2D Neck, LeftShoulder, LeftElbow, RightShoulder, RightElbow, LeftHip, LeftKnee, RightHip, RightKnee;
 	public Dictionary<textName, SpriteArray2D> bodyParts = new();
-	private ulong id;
 	public void Init(ulong id)
 	{
 		this.id = id;
@@ -50,7 +49,6 @@ public partial class StitchCharacter : NetObject
 			ReceivedUpdate = true;
 		}
 	}
-
 	public void SetTextures(Dictionary<textName, SpriteArray2D> parts)
 	{
 		GD.Print("Setting tetures");

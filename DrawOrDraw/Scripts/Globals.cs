@@ -46,6 +46,7 @@ public partial class Globals : Node
 
     private void SpritePacketReceived(SpritePacket packet, ConnectionManager connection)
     {
+		GD.Print("I have received a sprite packet!");
         otherPlayerChar = StitchChar.Instantiate<StitchCharacter>();
 		otherPlayerChar.bodyParts[textName.head] = packet.headSprite;
 		otherPlayerChar.bodyParts[textName.torso] = packet.torsoSprite;
