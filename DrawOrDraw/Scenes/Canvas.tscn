@@ -197,6 +197,33 @@ toggle_mode = true
 button_pressed = true
 icon = ExtResource("6_af40i")
 
+[node name="Line1Button" type="Button" parent="Camera2D"]
+offset_left = 102.0
+offset_top = -293.0
+offset_right = 142.0
+offset_bottom = -253.0
+toggle_mode = true
+button_pressed = true
+text = "1"
+
+[node name="Line3Button" type="Button" parent="Camera2D"]
+offset_left = 151.0
+offset_top = -293.0
+offset_right = 191.0
+offset_bottom = -253.0
+toggle_mode = true
+button_pressed = true
+text = "3"
+
+[node name="Line5Button" type="Button" parent="Camera2D"]
+offset_left = 200.0
+offset_top = -293.0
+offset_right = 240.0
+offset_bottom = -253.0
+toggle_mode = true
+button_pressed = true
+text = "5"
+
 [node name="Submit" type="Button" parent="Camera2D"]
 offset_left = 146.0
 offset_top = 251.0
@@ -216,4 +243,7 @@ text = "Submit"
 [connection signal="pressed" from="Camera2D/YellowButton" to="Sprite2D" method="OnYellowPress"]
 [connection signal="pressed" from="Camera2D/PinkButton" to="Sprite2D" method="OnPinkPress"]
 [connection signal="pressed" from="Camera2D/EraserButton" to="Sprite2D" method="OnEraserClick"]
+[connection signal="pressed" from="Camera2D/Line1Button" to="Sprite2D" method="OnOnePress"]
+[connection signal="pressed" from="Camera2D/Line3Button" to="Sprite2D" method="OnThreePress"]
+[connection signal="pressed" from="Camera2D/Line5Button" to="Sprite2D" method="OnFivePress"]
 [connection signal="pressed" from="Camera2D/Submit" to="Sprite2D" method="OnSubmitClick"]
