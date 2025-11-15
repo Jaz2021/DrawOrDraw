@@ -121,10 +121,14 @@ public partial class Globals : Node
 		currentEnv.Enter();
 		EnvironmentRoot.AddChild(currentEnv);
 	}
-	public override void _Process(double delta)
-	{
-		if (NetworkingV2.isInit)
-		{
+	public void CreateCharacter(StitchCharacter c)
+    {
+        
+    }
+    public override void _Process(double delta)
+    {
+        if (NetworkingV2.isInit)
+        {
 			SteamAPI.RunCallbacks();
 		}
 	}

@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi4rms528ykli"]
+
+[ext_resource type="Script" uid="uid://bfl0y4anuw82m" path="res://StitchCharacter.cs" id="1_mnira"]
+[ext_resource type="Texture2D" uid="uid://cgvxrvse4kws5" path="res://sprite_textures/TorsoBackground.png" id="2_mnira"]
+[ext_resource type="Texture2D" uid="uid://sf6tuoev5xqj" path="res://sprite_textures/HeadBackground.png" id="3_4nip5"]
+[ext_resource type="Texture2D" uid="uid://d0m5d4q64nj3r" path="res://sprite_textures/LimbBackground.png" id="4_1hc70"]
+
+[node name="StitchedPlayer" type="Node2D" node_paths=PackedStringArray("Head", "Torso", "LeftUpperArm", "LeftForearm", "RightUpperArm", "RightForearm", "LeftThigh", "LeftShin", "RightThigh", "RightShin", "Neck", "LeftShoulder", "LeftElbow", "RightShoulder", "RightElbow", "LeftHip", "LeftKnee", "RightHip", "RightKnee")]
+script = ExtResource("1_mnira")
+Head = NodePath("Node2D/Neck/Head")
+Torso = NodePath("Node2D/Torso")
+LeftUpperArm = NodePath("Node2D/LeftShoulder/LeftUpperArm")
+LeftForearm = NodePath("Node2D/LeftShoulder/LeftElbow/LeftForearm")
+RightUpperArm = NodePath("Node2D/RightShoulder/RightUpperArm")
+RightForearm = NodePath("Node2D/RightShoulder/RightElbow/RightForearm")
+LeftThigh = NodePath("Node2D/LeftHip/LeftThigh")
+LeftShin = NodePath("Node2D/LeftHip/LeftKnee/LeftShin")
+RightThigh = NodePath("Node2D/RightHip/RightThigh")
+RightShin = NodePath("Node2D/RightHip/RightKnee/RightShin")
+Neck = NodePath("Node2D/Neck")
+LeftShoulder = NodePath("Node2D/LeftShoulder")
+LeftElbow = NodePath("Node2D/LeftShoulder/LeftElbow")
+RightShoulder = NodePath("Node2D/RightShoulder")
+RightElbow = NodePath("Node2D/RightShoulder/RightElbow")
+LeftHip = NodePath("Node2D/LeftHip")
+LeftKnee = NodePath("Node2D/LeftHip/LeftKnee")
+RightHip = NodePath("Node2D/RightHip")
+RightKnee = NodePath("Node2D/RightHip/RightKnee")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Torso" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, 42)
+texture = ExtResource("2_mnira")
+
+[node name="Neck" type="Node2D" parent="Node2D"]
+position = Vector2(1, 20)
+
+[node name="Head" type="Sprite2D" parent="Node2D/Neck"]
+position = Vector2(-1, -20)
+texture = ExtResource("3_4nip5")
+
+[node name="LeftShoulder" type="Node2D" parent="Node2D"]
+position = Vector2(-21, 30)
+
+[node name="LeftUpperArm" type="Sprite2D" parent="Node2D/LeftShoulder"]
+position = Vector2(-20, -1)
+rotation = 1.5707964
+texture = ExtResource("4_1hc70")
+
+[node name="LeftElbow" type="Node2D" parent="Node2D/LeftShoulder"]
+position = Vector2(-41, 0)
+
+[node name="LeftForearm" type="Sprite2D" parent="Node2D/LeftShoulder/LeftElbow"]
+position = Vector2(-20, -1)
+rotation = 1.5707964
+texture = ExtResource("4_1hc70")
+
+[node name="RightShoulder" type="Node2D" parent="Node2D"]
+position = Vector2(21, 30)
+
+[node name="RightUpperArm" type="Sprite2D" parent="Node2D/RightShoulder"]
+position = Vector2(20, 1)
+rotation = -1.5707964
+texture = ExtResource("4_1hc70")
+
+[node name="RightElbow" type="Node2D" parent="Node2D/RightShoulder"]
+position = Vector2(40, 0)
+
+[node name="RightForearm" type="Sprite2D" parent="Node2D/RightShoulder/RightElbow"]
+position = Vector2(20, 1)
+rotation = -1.5707964
+texture = ExtResource("4_1hc70")
+
+[node name="RightHip" type="Node2D" parent="Node2D"]
+position = Vector2(14, 66)
+
+[node name="RightThigh" type="Sprite2D" parent="Node2D/RightHip"]
+position = Vector2(-29, 61)
+texture = ExtResource("4_1hc70")
+
+[node name="RightKnee" type="Node2D" parent="Node2D/RightHip"]
+position = Vector2(0, 41)
+
+[node name="RightShin" type="Sprite2D" parent="Node2D/RightHip/RightKnee"]
+position = Vector2(0, 20)
+texture = ExtResource("4_1hc70")
+
+[node name="LeftHip" type="Node2D" parent="Node2D"]
+position = Vector2(-14, 66)
+
+[node name="LeftThigh" type="Sprite2D" parent="Node2D/LeftHip"]
+position = Vector2(-1, 20)
+texture = ExtResource("4_1hc70")
+
+[node name="LeftKnee" type="Node2D" parent="Node2D/LeftHip"]
+position = Vector2(0, 40)
+
+[node name="LeftShin" type="Sprite2D" parent="Node2D/LeftHip/LeftKnee"]
+position = Vector2(27, -20)
+texture = ExtResource("4_1hc70")
