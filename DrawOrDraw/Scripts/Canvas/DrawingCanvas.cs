@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Godot;
@@ -45,13 +47,15 @@ public enum lineThickness
 
 public struct bodyPart
 {
-    public Image texture;
+    public SpriteArray2D texture;
     public textName spriteName;
 };
 
 public partial class DrawingCanvas : Sprite2D
 {
-    [Export] private PackedScene nextScene;
+    [Export] private PackedScene stitchChar;
+    [Export] private Sprite2D backgroundSprite;
+    [Export] private Label label;
     private bodyPart[] drawnSprites;
     [Export] private Texture2D SelectedPencil, UnselectedPencil, SelectedEraser, UnselectedEraser;
     [Export] private Button PencilButton, EraserButton, BlackButton, RedButton, GreenButton, BlueButton, PurpleButton, BrownButton, GreyButton, OrangeButton, YellowButton, PinkButton;
@@ -63,6 +67,11 @@ public partial class DrawingCanvas : Sprite2D
     private Pen _stylus;
     private penColor color;
     private lineThickness line;
+    [Export] private Godot.Collections.Dictionary<textName, Texture2D> backgroundTextures;
+    [Export] private Godot.Collections.Dictionary<textName, string> DrawMessage;
+    [Export] private Godot.Collections.Array<textName> textNameOrder;
+    private int currentTextName = 0;
+    private Dictionary<textName, SpriteArray2D> sprites = new();
     private Pen Stylus
     {
         get => _stylus;
@@ -93,6 +102,9 @@ public partial class DrawingCanvas : Sprite2D
 
     private void createCanvas()
     {
+        backgroundSprite.Texture = backgroundTextures[textNameOrder[currentTextName]];
+        GD.Print(DrawMessage[textNameOrder[currentTextName]]);
+        label.Text = DrawMessage[textNameOrder[currentTextName]];
         canvas = new(size);
         pixels = new Area2D[size][];
         for (int i = 0; i < size; i++)
@@ -333,48 +345,20 @@ public partial class DrawingCanvas : Sprite2D
 
     public void OnSubmitClick()
     {
-        var img = canvas.CreateImage();
-        bool ended = true;
-        for (int i = 0; i < 6; i++)
+        var img = canvas;
+        textName tn = textNameOrder[currentTextName];
+        sprites[tn] = img;
+        currentTextName += 1;
+        if(currentTextName >= textNameOrder.Count)
         {
-            if (drawnSprites[i].texture == null)
-            {
-                ended = false;
-                drawnSprites[i].texture = img;
-                switch (i)
-                {
-                    case 0:
-                        drawnSprites[i].spriteName = textName.head;
-                        break;
-                    case 1:
-                        drawnSprites[i].spriteName = textName.torso;
-                        break;
-                    case 2:
-                        drawnSprites[i].spriteName = textName.upper_arm;
-                        break;
-                    case 3:
-                        drawnSprites[i].spriteName = textName.lower_arm;
-                        break;
-                    case 4:
-                        drawnSprites[i].spriteName = textName.thigh;
-                        break;
-                    case 5:
-                        drawnSprites[i].spriteName = textName.shin;
-                        break;
-                    default:
-                        break;
-                }
-                createCanvas();
-                return;
-            }
-        }
-        if (ended)
-        {
-            var n = nextScene.Instantiate<StitchCharacter>();
-            n.SetTextures(drawnSprites);
+            var n = stitchChar.Instantiate<StitchCharacter>();
+            n.SetTextures(sprites);
             Globals.Instance.CreateCharacter(n);
+        } else
+        {
+            createCanvas();
+            
         }
-        return;
     }
 
     public void OnBlackPress()

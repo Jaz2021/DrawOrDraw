@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba65bybja3enw"]
+[gd_scene load_steps=7 format=3 uid="uid://ba65bybja3enw"]
 
 [ext_resource type="Script" uid="uid://dr6h31n1d7gxy" path="res://Scripts/Menu/MainMenu.cs" id="1_5ncg0"]
+[ext_resource type="Texture2D" uid="uid://bq53gjya2ulug" path="res://sprite_textures/titlescreen.png" id="2_5ncg0"]
+[ext_resource type="Texture2D" uid="uid://drokrl1jidajm" path="res://sprite_textures/white_sprite.png" id="3_0xbyl"]
+[ext_resource type="Script" uid="uid://dfjo5otlqfkbm" path="res://Scripts/titlescreen_colors.gd" id="3_1txdl"]
 [ext_resource type="Script" uid="uid://dt4nxei6dvf7u" path="res://Scripts/Menu/Menu.cs" id="3_5ncg0"]
+[ext_resource type="Texture2D" uid="uid://t2pcny5rtux" path="res://sprite_textures/stickynote.png" id="5_1txdl"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("NewGameMenu", "defaultSubMenu")]
 layout_mode = 3
@@ -13,6 +17,16 @@ grow_vertical = 2
 script = ExtResource("1_5ncg0")
 NewGameMenu = NodePath("NewGameMenu")
 defaultSubMenu = NodePath("TitleScreen")
+
+[node name="Titlescreen" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_5ncg0")
+script = ExtResource("3_1txdl")
+
+[node name="WhiteSprite" type="Sprite2D" parent="."]
+position = Vector2(275, 517)
+scale = Vector2(10.9375, 20.5)
+texture = ExtResource("3_0xbyl")
 
 [node name="TitleScreen" type="Control" parent="." node_paths=PackedStringArray("PreviousMenu")]
 layout_mode = 1
@@ -31,10 +45,10 @@ anchor_left = 0.054
 anchor_top = 0.441
 anchor_right = 0.347
 anchor_bottom = 0.577
-offset_left = -0.208
-offset_top = 0.231995
-offset_right = 0.255981
-offset_bottom = 0.103973
+offset_left = 802.32
+offset_top = -317.28003
+offset_right = 611.76
+offset_bottom = -112.160034
 text = "New Game"
 
 [node name="Quit" type="Button" parent="TitleScreen"]
@@ -44,10 +58,10 @@ anchor_left = 0.052
 anchor_top = 0.844
 anchor_right = 0.345
 anchor_bottom = 0.98
-offset_left = 0.0960007
-offset_top = 0.0879517
-offset_right = 0.559967
-offset_bottom = -0.0400391
+offset_left = 964.16
+offset_top = -316.51996
+offset_right = 772.6
+offset_bottom = -108.400024
 text = "Quit"
 
 [node name="NewGameMenu" type="Control" parent="." node_paths=PackedStringArray("PreviousMenu")]
@@ -86,6 +100,16 @@ offset_top = 0.13598633
 offset_right = 0.43197632
 offset_bottom = 0.055999756
 text = "Online"
+
+[node name="Stickynote" type="Sprite2D" parent="."]
+position = Vector2(1098.0001, 315.00003)
+scale = Vector2(5.59375, 5.59375)
+texture = ExtResource("5_1txdl")
+
+[node name="Stickynote2" type="Sprite2D" parent="."]
+position = Vector2(1259.0001, 752)
+scale = Vector2(5.59375, 5.59375)
+texture = ExtResource("5_1txdl")
 
 [connection signal="pressed" from="TitleScreen/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="TitleScreen/Quit" to="." method="QuitPressed"]
