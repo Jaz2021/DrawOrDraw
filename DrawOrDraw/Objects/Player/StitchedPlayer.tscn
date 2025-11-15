@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi4rms528ykli"]
+
+[ext_resource type="Script" path="res://Character.cs" id="1_faifx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_faifx")
+
+[node name="Head" type="Sprite2D" parent="."]
+
+[node name="Torso" type="Sprite2D" parent="."]
+
+[node name="LeftUpperArm" type="Sprite2D" parent="."]
+
+[node name="LeftForearm" type="Sprite2D" parent="."]
+
+[node name="RightUpperArm" type="Sprite2D" parent="."]
+
+[node name="RightForearm" type="Sprite2D" parent="."]
+
+[node name="LeftThigh" type="Sprite2D" parent="."]
+
+[node name="LeftShin" type="Sprite2D" parent="."]
+
+[node name="RightThigh" type="Sprite2D" parent="."]
+
+[node name="RightShin" type="Sprite2D" parent="."]
