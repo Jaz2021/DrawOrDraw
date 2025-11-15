@@ -54,7 +54,7 @@ public partial class DrawingCanvas : Sprite2D
     [Export] private PackedScene nextScene;
     private bodyPart[] drawnSprites;
     [Export] private Texture2D SelectedPencil, UnselectedPencil, SelectedEraser, UnselectedEraser;
-    [Export] private Button PencilButton, EraserButton;
+    [Export] private Button PencilButton, EraserButton, BlackButton, RedButton, GreenButton, BlueButton, PurpleButton, BrownButton, GreyButton, OrangeButton, YellowButton, PinkButton;
     private SpriteArray2D canvas;
     private bool drawing = false;
     private Area2D[][] pixels;
@@ -112,20 +112,19 @@ public partial class DrawingCanvas : Sprite2D
                 pixels[i][j].Position = new(i * pixelSize - (size * 0.5f * pixelSize), j * pixelSize - (size * 0.5f * pixelSize));
                 pixels[i][j].CallDeferred("add_child", collisionShape);
                 pixels[i][j].MouseEntered += () => MouseEntered(b, a);
-                pixels[i][j].MouseExited += () => MouseLeft(b, a);
             }
         }
         Texture = new();
     }
     private void MouseEntered(int i, int j)
     {
-
         if (drawing)
         {
             switch (Stylus)
             {
                 case Pen.pencil:
                     DrawOnCanvas(i, j);
+                    GD.Print($"Drawing at {i}, {j}");
                     break;
                 case Pen.eraser:
                     canvas.Pixels[i][j].r = 255;
@@ -140,10 +139,6 @@ public partial class DrawingCanvas : Sprite2D
                     break;
             }
         }
-    }
-    private void MouseLeft(int i, int j)
-    {
-
     }
 
     public override void _Input(InputEvent e)
@@ -348,8 +343,10 @@ public partial class DrawingCanvas : Sprite2D
 
     public void OnBlackPress()
     {
+        BlackButton.ToggleMode = true;
         GD.Print("Pressed Black");
         color = penColor.black;
+
     }
 
     public void OnRedPress()
