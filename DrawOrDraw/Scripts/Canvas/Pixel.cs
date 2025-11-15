@@ -1,6 +1,7 @@
 // var test = Image.createFromData(32, 32, false, Image.Format.Rgb8, [0, 0, 0, 0, 0, 0, 0])
 
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Godot;
 
 public struct SpritePixel
@@ -22,13 +23,14 @@ public struct SpritePixel
 
 public struct SpriteArray2D
 {
+    public SpritePixel[][] Pixels;
     public SpriteArray2D(int size)
     {
         Pixels = new SpritePixel[size][];
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             Pixels[i] = new SpritePixel[size];
-            for(int j = 0; j < size; j++)
+            for (int j = 0; j < size; j++)
             {
                 Pixels[i][j] = new();
             }
@@ -38,10 +40,10 @@ public struct SpriteArray2D
     public byte[] SerializeImage()
     {
         List<byte> bytes = new();
-        
-        foreach(var column in Pixels)
+
+        foreach (var column in Pixels)
         {
-            foreach(var pixel in column)
+            foreach (var pixel in column)
             {
                 bytes.AddRange(pixel.Serialize());
             }
@@ -64,5 +66,43 @@ public struct SpriteArray2D
     public Image CreateImage()
     {
         return Image.CreateFromData(Pixels[0].Length, Pixels.Length, false, Image.Format.Rgba8, SerializeImage());
+    }
+
+    public int findArea()
+    {
+        int maxX, minX, maxY, minY;
+        maxX = minX = maxY = minY = 0;
+        for (int i = 0; i < Pixels.Length; i++)
+        {
+            for (int j = 0; i < Pixels[0].Length; i++)
+            {
+                if (Pixels[i][j].a != 0)
+                {
+                    if (i < minX)
+                    {
+                        minX = i;
+                    }
+
+                    if (i >= maxX)
+                    {
+                        maxX = i;
+                    }
+
+                    if (j < minY)
+                    {
+                        minY = j;
+                    }
+
+                    if (j >= maxY)
+                    {
+                        maxY = j;
+                    }
+                }
+            }
+        }
+
+        int deltaX = maxX - minX;
+        int deltaY = maxY - minY;
+        return deltaX * deltaY;
     }
 }

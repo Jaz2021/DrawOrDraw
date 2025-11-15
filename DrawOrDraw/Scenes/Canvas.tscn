@@ -35,12 +35,12 @@ objectRoot = NodePath("ObjectRoot")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(10, 10)
+scale = Vector2(17.5, 17.5)
 texture = ExtResource("2_ox5ak")
 
-[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("backgroundSprite", "label", "PencilButton", "EraserButton")]
+[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("PencilButton", "EraserButton", "BlackButton", "RedButton", "GreenButton", "BlueButton", "PurpleButton", "BrownButton", "GreyButton", "OrangeButton", "YellowButton", "PinkButton")]
 texture_filter = 1
-scale = Vector2(10, 10)
+scale = Vector2(17.5, 17.5)
 texture = ExtResource("2_ox5ak")
 script = ExtResource("1_53v2k")
 stitchChar = ExtResource("4_0r78b")
@@ -52,45 +52,41 @@ SelectedEraser = ExtResource("5_wqmdm")
 UnselectedEraser = ExtResource("6_af40i")
 PencilButton = NodePath("../Camera2D/PencilButton")
 EraserButton = NodePath("../Camera2D/EraserButton")
-backgroundTextures = Dictionary[int, Texture]({
-0: ExtResource("8_jxeyk"),
-1: ExtResource("9_0r78b"),
-2: ExtResource("10_jkn40"),
-3: ExtResource("10_jkn40"),
-4: ExtResource("10_jkn40"),
-5: ExtResource("10_jkn40")
-})
-DrawMessage = Dictionary[int, String]({
-0: "Draw your head",
-1: "Draw your torso!",
-2: "Draw your upper arm!",
-3: "Draw your forearm/hand!",
-4: "Draw your thigh!",
-5: "Draw your shin/foot!"
-})
-textNameOrder = Array[int]([0, 1, 2, 3, 4, 5])
+BlackButton = NodePath("../Camera2D/BlackButton")
+RedButton = NodePath("../Camera2D/RedButton")
+GreenButton = NodePath("../Camera2D/GreenButton")
+BlueButton = NodePath("../Camera2D/BlueButton")
+PurpleButton = NodePath("../Camera2D/PurpleButton")
+BrownButton = NodePath("../Camera2D/BrownButton")
+GreyButton = NodePath("../Camera2D/GreyButton")
+OrangeButton = NodePath("../Camera2D/OrangeButton")
+YellowButton = NodePath("../Camera2D/YellowButton")
+PinkButton = NodePath("../Camera2D/PinkButton")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="PencilButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -238.0
-offset_top = -293.0
-offset_right = -198.0
-offset_bottom = -253.0
+offset_left = -420.00003
+offset_top = -494.00003
+offset_right = -380.00003
+offset_bottom = -454.00003
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
 toggle_mode = true
 button_pressed = true
+keep_pressed_outside = true
 icon = ExtResource("3_bcll6")
 
 [node name="BlackButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = -240.0
-offset_right = -249.0
-offset_bottom = -200.0
+offset_left = -495.0
+offset_top = -420.0
+offset_right = -455.0
+offset_bottom = -380.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -100,12 +96,11 @@ icon = ExtResource("7_23gnd")
 
 [node name="RedButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = -191.0
-offset_right = -249.0
-offset_bottom = -151.0
-theme = SubResource("Theme_qjf80")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+offset_left = -495.0
+offset_top = -335.0
+offset_right = -455.0
+offset_bottom = -295.0
+scale = Vector2(1.75, 1.75)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
 toggle_mode = true
 button_pressed = true
@@ -113,10 +108,11 @@ icon = ExtResource("8_j000p")
 
 [node name="GreenButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = -142.0
-offset_right = -249.0
-offset_bottom = -102.0
+offset_left = -495.0
+offset_top = -250.0
+offset_right = -455.0
+offset_bottom = -210.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -126,10 +122,11 @@ icon = ExtResource("9_aieyg")
 
 [node name="BlueButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = -93.0
-offset_right = -249.0
-offset_bottom = -53.0
+offset_left = -495.0
+offset_top = -165.0
+offset_right = -455.0
+offset_bottom = -125.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -139,10 +136,11 @@ icon = ExtResource("10_0mo3k")
 
 [node name="PurpleButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = -44.0
-offset_right = -249.0
-offset_bottom = -4.0
+offset_left = -495.0
+offset_top = -80.0
+offset_right = -455.0
+offset_bottom = -40.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -152,10 +150,11 @@ icon = ExtResource("11_jxeyk")
 
 [node name="BrownButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
+offset_left = -495.0
 offset_top = 5.0
-offset_right = -249.0
+offset_right = -455.0
 offset_bottom = 45.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -165,10 +164,11 @@ icon = ExtResource("12_0r78b")
 
 [node name="GreyButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = 54.0
-offset_right = -249.0
-offset_bottom = 94.0
+offset_left = -495.0
+offset_top = 90.0
+offset_right = -455.0
+offset_bottom = 130.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -178,10 +178,11 @@ icon = ExtResource("13_jkn40")
 
 [node name="OrangeButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = 103.0
-offset_right = -249.0
-offset_bottom = 143.0
+offset_left = -495.0
+offset_top = 175.0
+offset_right = -455.0
+offset_bottom = 215.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -191,10 +192,11 @@ icon = ExtResource("14_crams")
 
 [node name="YellowButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = 152.0
-offset_right = -249.0
-offset_bottom = 192.0
+offset_left = -495.0
+offset_top = 260.0
+offset_right = -455.0
+offset_bottom = 300.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -204,10 +206,11 @@ icon = ExtResource("15_syyqk")
 
 [node name="PinkButton" type="Button" parent="Camera2D"]
 material = SubResource("CanvasItemMaterial_bcll6")
-offset_left = -289.0
-offset_top = 201.0
-offset_right = -249.0
-offset_bottom = 241.0
+offset_left = -495.0
+offset_top = 345.0
+offset_right = -455.0
+offset_bottom = 385.0
+scale = Vector2(1.75, 1.75)
 theme = SubResource("Theme_qjf80")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
@@ -216,19 +219,41 @@ button_pressed = true
 icon = ExtResource("16_5h3v8")
 
 [node name="EraserButton" type="Button" parent="Camera2D"]
-offset_left = -191.0
-offset_top = -293.0
-offset_right = -151.0
-offset_bottom = -253.0
+offset_left = -333.0
+offset_top = -494.0
+offset_right = -293.0
+offset_bottom = -454.0
+scale = Vector2(1.75, 1.75)
 toggle_mode = true
 button_pressed = true
 icon = ExtResource("6_af40i")
 
+[node name="Line1Button" type="Button" parent="Camera2D"]
+offset_left = 263.0
+offset_top = -494.0
+offset_right = 303.0
+offset_bottom = -454.0
+scale = Vector2(1.75, 1.75)
+toggle_mode = true
+button_pressed = true
+text = "1"
+
+[node name="Line3Button" type="Button" parent="Camera2D"]
+offset_left = 350.0
+offset_top = -494.0
+offset_right = 390.0
+offset_bottom = -454.0
+scale = Vector2(1.75, 1.75)
+toggle_mode = true
+button_pressed = true
+text = "3"
+
 [node name="Submit" type="Button" parent="Camera2D"]
-offset_left = 146.0
-offset_top = 251.0
-offset_right = 227.0
-offset_bottom = 293.0
+offset_left = 234.0
+offset_top = 441.0
+offset_right = 315.0
+offset_bottom = 483.0
+scale = Vector2(1.75, 1.75)
 text = "Submit"
 
 [node name="Label" type="Label" parent="Camera2D"]
@@ -252,4 +277,6 @@ text = "Draw Your Head"
 [connection signal="pressed" from="Camera2D/YellowButton" to="Sprite2D" method="OnYellowPress"]
 [connection signal="pressed" from="Camera2D/PinkButton" to="Sprite2D" method="OnPinkPress"]
 [connection signal="pressed" from="Camera2D/EraserButton" to="Sprite2D" method="OnEraserClick"]
+[connection signal="pressed" from="Camera2D/Line1Button" to="Sprite2D" method="OnOnePress"]
+[connection signal="pressed" from="Camera2D/Line3Button" to="Sprite2D" method="OnThreePress"]
 [connection signal="pressed" from="Camera2D/Submit" to="Sprite2D" method="OnSubmitClick"]
