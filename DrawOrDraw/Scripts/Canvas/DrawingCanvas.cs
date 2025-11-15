@@ -1,6 +1,14 @@
+using System.Collections;
 using System.Diagnostics;
 using Godot;
 using Steamworks;
+
+public enum Pen
+{
+    pencil,
+    eraser
+
+};
 
 public partial class DrawingCanvas : Sprite2D
 {   
@@ -10,9 +18,11 @@ public partial class DrawingCanvas : Sprite2D
     private Area2D[][] pixels;
     [Export] private float pixelSize = 1f;
     [Export] private int size = 32;
+    private Pen stylus;
 
     public override void _Ready()
     {
+        stylus = Pen.pencil;
         canvas = new(size);
         pixels = new Area2D[size][];
         for (int i = 0; i < size; i++)
@@ -42,12 +52,29 @@ public partial class DrawingCanvas : Sprite2D
 
         if (drawing)
         {
-            canvas.Pixels[i][j].r = 0;
-            canvas.Pixels[i][j].g = 0;
-            canvas.Pixels[i][j].b = 0;
-            var img = canvas.CreateImage();
-            var texture = ImageTexture.CreateFromImage(img);
-            Texture = texture;
+            switch (stylus) 
+            {
+                case Pen.pencil:
+                    canvas.Pixels[i][j].r = 0;
+                    canvas.Pixels[i][j].g = 0;
+                    canvas.Pixels[i][j].b = 0;
+                    canvas.Pixels[i][j].a = 255;
+                    var img = canvas.CreateImage();
+                    var texture = ImageTexture.CreateFromImage(img);
+                    Texture = texture;
+                    break;
+                case Pen.eraser:
+                    canvas.Pixels[i][j].r = 255;
+                    canvas.Pixels[i][j].g = 255;
+                    canvas.Pixels[i][j].b = 255;
+                    canvas.Pixels[i][j].a = 0;
+                    var image = canvas.CreateImage();
+                    var text = ImageTexture.CreateFromImage(image);
+                    Texture = text;
+                    break;
+                default:
+                    break;
+            }
         }
     }
     private void MouseLeft(int i, int j)
@@ -77,5 +104,10 @@ public partial class DrawingCanvas : Sprite2D
                 drawing = false;
             }
         }
+    }
+
+    public void onPencilClick()
+    {
+         
     }
 }

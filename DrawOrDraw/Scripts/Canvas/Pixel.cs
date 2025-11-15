@@ -8,6 +8,7 @@ public struct SpritePixel
     public byte r = 255;
     public byte g = 255;
     public byte b = 255;
+    public byte a = 0;
 
     public SpritePixel()
     {
@@ -15,7 +16,7 @@ public struct SpritePixel
 
     public byte[] Serialize()
     {
-        return [r, g, b];
+        return [r, g, b, a];
     }
 }
 
@@ -49,6 +50,6 @@ public struct SpriteArray2D
     }
     public Image CreateImage()
     {
-        return Image.CreateFromData(Pixels[0].Length, Pixels.Length, false, Image.Format.Rgb8, Serialize());
+        return Image.CreateFromData(Pixels[0].Length, Pixels.Length, false, Image.Format.Rgba8, Serialize());
     }
 }
