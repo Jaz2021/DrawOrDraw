@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cainfe66j5486"
-path="res://.godot/imported/Canvas.png-41e6f8097566253ae924bdb7ac176d49.ctex"
+uid="uid://br25c20e4wbt4"
+path="res://.godot/imported/eraser_selected.png-39d727b01b75ae62fd14bdfacd314fee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite_textures/Canvas.png"
-dest_files=["res://.godot/imported/Canvas.png-41e6f8097566253ae924bdb7ac176d49.ctex"]
+source_file="res://sprite_textures/eraser_selected.png"
+dest_files=["res://.godot/imported/eraser_selected.png-39d727b01b75ae62fd14bdfacd314fee.ctex"]
 
 [params]
 

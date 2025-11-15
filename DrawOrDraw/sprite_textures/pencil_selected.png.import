@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cainfe66j5486"
-path="res://.godot/imported/Canvas.png-41e6f8097566253ae924bdb7ac176d49.ctex"
+uid="uid://bvrkouox4wax7"
+path="res://.godot/imported/pencil_selected.png-a70a9a3b102f39bef20798a8db0d1501.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite_textures/Canvas.png"
-dest_files=["res://.godot/imported/Canvas.png-41e6f8097566253ae924bdb7ac176d49.ctex"]
+source_file="res://sprite_textures/pencil_selected.png"
+dest_files=["res://.godot/imported/pencil_selected.png-a70a9a3b102f39bef20798a8db0d1501.ctex"]
 
 [params]
 
