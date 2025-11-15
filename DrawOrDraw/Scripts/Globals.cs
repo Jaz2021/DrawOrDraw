@@ -77,7 +77,7 @@ public partial class Globals : Node
 		// SpawnObjectPacket objPacket = new((ulong)connection.steamID, (byte)ObjectType.Player, Vector2.Zero);
 		// NetworkingV2.SendPacketToAll(objPacket, true);
 		// SpawnObjectPacket.SpawnObjectPacketReceived(objPacket, null);
-		ChangeScene(GameplayScene, Vector2.Zero, null);
+		ChangeScene(canvasScene, Vector2.Zero, null);
 		ChangeMenu(PauseMenu);
 	}
 	public void StartOnlineGame()
