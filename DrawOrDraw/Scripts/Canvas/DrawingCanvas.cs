@@ -21,26 +21,47 @@ public enum textName
     shin
 };
 
+public enum penColor
+{
+    black,
+    red,
+    green,
+    blue,
+    purple,
+    brown,
+    grey,
+    orange,
+    yellow,
+    pink,
+
+};
+
+public enum lineThickness
+{
+    one,
+    three,
+    five
+};
+
 public struct bodyPart
 {
     public Image texture;
     public textName spriteName;
-}
+};
 
 public partial class DrawingCanvas : Sprite2D
-{   
+{
     private bodyPart[] drawnSprites;
-    [Export] private Texture2D SelectedPencil;
-    [Export] private Texture2D UnselectedPencil;
-    [Export] private Texture2D SelectedEraser;
-    [Export] private Texture2D UnselectedEraser;
-    [Export] private Button PencilButton;
-    [Export] private Button EraserButton;
+    [Export] private Texture2D SelectedPencil, UnselectedPencil, SelectedEraser, UnselectedEraser;
+    [Export] private Button PencilButton, EraserButton;
     private SpriteArray2D canvas;
     private bool drawing = false;
     private Area2D[][] pixels;
     [Export] private float pixelSize = 1f;
     [Export] private int size = 48;
+    private Pen _stylus;
+    private penColor color;
+    private lineThickness line;
     private Pen Stylus
     {
         get => _stylus;
@@ -59,13 +80,13 @@ public partial class DrawingCanvas : Sprite2D
             }
         }
     }
-    private Pen _stylus;
 
     public override void _Ready()
     {
         Stylus = Pen.pencil;
+        color = penColor.black;
+        line = lineThickness.one;
         drawnSprites = new bodyPart[6];
-
         createCanvas();
     }
 
@@ -100,16 +121,10 @@ public partial class DrawingCanvas : Sprite2D
 
         if (drawing)
         {
-            switch (Stylus) 
+            switch (Stylus)
             {
                 case Pen.pencil:
-                    canvas.Pixels[i][j].r = 0;
-                    canvas.Pixels[i][j].g = 0;
-                    canvas.Pixels[i][j].b = 0;
-                    canvas.Pixels[i][j].a = 255;
-                    var img = canvas.CreateImage();
-                    var texture = ImageTexture.CreateFromImage(img);
-                    Texture = texture;
+                    DrawOnCanvas(i, j);
                     break;
                 case Pen.eraser:
                     canvas.Pixels[i][j].r = 255;
@@ -134,14 +149,14 @@ public partial class DrawingCanvas : Sprite2D
     {
         if (e is InputEventMouseMotion m)
         {
-            
-        } 
+
+        }
         else if (e is InputEventMouseButton b)
         {
             if (b.IsActionPressed("PrimaryAction"))
             {
                 drawing = true;
-            } 
+            }
             else if (b.IsActionReleased("PrimaryAction"))
             {
                 drawing = false;
@@ -149,9 +164,108 @@ public partial class DrawingCanvas : Sprite2D
         }
     }
 
+    public void DrawOnCanvas(int i, int j)
+    {
+        Image img;
+        ImageTexture texture;
+        switch (color)
+        {
+            case penColor.black:
+                canvas.Pixels[i][j].r = 0;
+                canvas.Pixels[i][j].g = 0;
+                canvas.Pixels[i][j].b = 0;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.red:
+                canvas.Pixels[i][j].r = 255;
+                canvas.Pixels[i][j].g = 0;
+                canvas.Pixels[i][j].b = 0;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.green:
+                canvas.Pixels[i][j].r = 0;
+                canvas.Pixels[i][j].g = 150;
+                canvas.Pixels[i][j].b = 0;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.blue:
+                canvas.Pixels[i][j].r = 0;
+                canvas.Pixels[i][j].g = 0;
+                canvas.Pixels[i][j].b = 255;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.purple:
+                canvas.Pixels[i][j].r = 175;
+                canvas.Pixels[i][j].g = 0;
+                canvas.Pixels[i][j].b = 200;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.brown:
+                canvas.Pixels[i][j].r = 150;
+                canvas.Pixels[i][j].g = 75;
+                canvas.Pixels[i][j].b = 0;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.grey:
+                canvas.Pixels[i][j].r = 125;
+                canvas.Pixels[i][j].g = 125;
+                canvas.Pixels[i][j].b = 125;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.orange:
+                canvas.Pixels[i][j].r = 255;
+                canvas.Pixels[i][j].g = 140;
+                canvas.Pixels[i][j].b = 0;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.yellow:
+                canvas.Pixels[i][j].r = 255;
+                canvas.Pixels[i][j].g = 255;
+                canvas.Pixels[i][j].b = 0;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+            case penColor.pink:
+                canvas.Pixels[i][j].r = 255;
+                canvas.Pixels[i][j].g = 102;
+                canvas.Pixels[i][j].b = 179;
+                canvas.Pixels[i][j].a = 255;
+                img = canvas.CreateImage();
+                texture = ImageTexture.CreateFromImage(img);
+                Texture = texture;
+                break;
+        }
+    }
+
     public void OnPencilClick()
     {
-         Stylus = Pen.pencil;
+        Stylus = Pen.pencil;
     }
 
     public void OnEraserClick()
@@ -162,7 +276,7 @@ public partial class DrawingCanvas : Sprite2D
     public void OnSubmitClick()
     {
         var img = canvas.CreateImage();
-        
+
         for (int i = 0; i < 6; i++)
         {
             if (drawnSprites[i].texture == null)
@@ -195,8 +309,81 @@ public partial class DrawingCanvas : Sprite2D
                 return;
             }
         }
-
-        // Go to stitching process;
         return;
+    }
+
+    public void OnBlackPress()
+    {
+        GD.Print("Pressed Black");
+        color = penColor.black;
+    }
+
+    public void OnRedPress()
+    {
+        GD.Print("Pressed Red");
+        color = penColor.red;
+    }
+
+    public void OnGreenPress()
+    {
+        GD.Print("Pressed Green");
+        color = penColor.green;
+    }
+
+    public void OnBluePress()
+    {
+        GD.Print("Pressed Blue");
+        color = penColor.blue;
+    }
+
+    public void OnPurplePress()
+    {
+        GD.Print("Pressed Purple");
+        color = penColor.purple;
+    }
+
+    public void OnBrownPress()
+    {
+        GD.Print("Pressed Brown");
+        color = penColor.brown;
+    }
+
+    public void OnGreyPress()
+    {
+        GD.Print("Pressed Grey");
+        color = penColor.grey;
+    }
+
+    public void OnOrangePress()
+    {
+        GD.Print("Pressed Orange");
+        color = penColor.orange;
+    }
+
+    public void OnYellowPress()
+    {
+        GD.Print("Pressed Yellow");
+        color = penColor.yellow;
+    }
+
+    public void OnPinkPress()
+    {
+        GD.Print("Pressed Yellow");
+        color = penColor.pink;
+    }
+
+    public void OnOnePress()
+    {
+        line = lineThickness.one;
+    }
+
+    public void OnThreePress()
+    {
+        line = lineThickness.three;
+    }
+
+    public void OnFivePress()
+    {
+        line = lineThickness.five;
     }
 }
