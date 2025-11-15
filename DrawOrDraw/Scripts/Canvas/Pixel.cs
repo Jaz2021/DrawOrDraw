@@ -36,7 +36,6 @@ public struct SpriteArray2D
             }
         }
     }
-    public SpritePixel[][] Pixels;
     public byte[] SerializeImage()
     {
         List<byte> bytes = new();
