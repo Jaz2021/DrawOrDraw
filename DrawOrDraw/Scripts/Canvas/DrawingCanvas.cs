@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Diagnostics;
+using System.IO;
 using Godot;
 using Steamworks;
 
@@ -10,19 +11,66 @@ public enum Pen
 
 };
 
+public enum textName
+{
+    head,
+    torso,
+    upper_arm,
+    lower_arm,
+    thigh,
+    shin
+};
+
+public struct bodyPart
+{
+    public Image texture;
+    public textName spriteName;
+}
+
 public partial class DrawingCanvas : Sprite2D
 {   
-    [Export] private string spriteName;
+    private bodyPart[] drawnSprites;
+    [Export] private Texture2D SelectedPencil;
+    [Export] private Texture2D UnselectedPencil;
+    [Export] private Texture2D SelectedEraser;
+    [Export] private Texture2D UnselectedEraser;
+    [Export] private Button PencilButton;
+    [Export] private Button EraserButton;
     private SpriteArray2D canvas;
     private bool drawing = false;
     private Area2D[][] pixels;
     [Export] private float pixelSize = 1f;
-    [Export] private int size = 32;
-    private Pen stylus;
+    [Export] private int size = 48;
+    private Pen Stylus
+    {
+        get => _stylus;
+        set
+        {
+            _stylus = value;
+            if (value == Pen.pencil)
+            {
+                PencilButton.Icon = SelectedPencil;
+                EraserButton.Icon = UnselectedEraser;
+            }
+            else
+            {
+                EraserButton.Icon = SelectedEraser;
+                PencilButton.Icon = UnselectedPencil;
+            }
+        }
+    }
+    private Pen _stylus;
 
     public override void _Ready()
     {
-        stylus = Pen.pencil;
+        Stylus = Pen.pencil;
+        drawnSprites = new bodyPart[6];
+
+        createCanvas();
+    }
+
+    private void createCanvas()
+    {
         canvas = new(size);
         pixels = new Area2D[size][];
         for (int i = 0; i < size; i++)
@@ -45,14 +93,14 @@ public partial class DrawingCanvas : Sprite2D
                 pixels[i][j].MouseExited += () => MouseLeft(b, a);
             }
         }
+        Texture = new();
     }
     private void MouseEntered(int i, int j)
     {
-        GD.Print($"Drawing at {i},{j}");
 
         if (drawing)
         {
-            switch (stylus) 
+            switch (Stylus) 
             {
                 case Pen.pencil:
                     canvas.Pixels[i][j].r = 0;
@@ -82,10 +130,6 @@ public partial class DrawingCanvas : Sprite2D
 
     }
 
-    public override void _Process(double delta)
-    {
-        
-    }
     public override void _Input(InputEvent e)
     {
         if (e is InputEventMouseMotion m)
@@ -96,7 +140,6 @@ public partial class DrawingCanvas : Sprite2D
         {
             if (b.IsActionPressed("PrimaryAction"))
             {
-                GD.Print("Drawing");
                 drawing = true;
             } 
             else if (b.IsActionReleased("PrimaryAction"))
@@ -106,8 +149,54 @@ public partial class DrawingCanvas : Sprite2D
         }
     }
 
-    public void onPencilClick()
+    public void OnPencilClick()
     {
-         
+         Stylus = Pen.pencil;
+    }
+
+    public void OnEraserClick()
+    {
+        Stylus = Pen.eraser;
+    }
+
+    public void OnSubmitClick()
+    {
+        var img = canvas.CreateImage();
+        
+        for (int i = 0; i < 6; i++)
+        {
+            if (drawnSprites[i].texture == null)
+            {
+                drawnSprites[i].texture = img;
+                switch (i)
+                {
+                    case 0:
+                        drawnSprites[i].spriteName = textName.head;
+                        break;
+                    case 1:
+                        drawnSprites[i].spriteName = textName.torso;
+                        break;
+                    case 2:
+                        drawnSprites[i].spriteName = textName.upper_arm;
+                        break;
+                    case 3:
+                        drawnSprites[i].spriteName = textName.lower_arm;
+                        break;
+                    case 4:
+                        drawnSprites[i].spriteName = textName.thigh;
+                        break;
+                    case 5:
+                        drawnSprites[i].spriteName = textName.shin;
+                        break;
+                    default:
+                        break;
+                }
+                createCanvas();
+                return;
+            }
+        }
+
+        // Go to stitching process;
+        return;
     }
 }
