@@ -55,7 +55,7 @@ public partial class NetObject : CharacterBody2D
         } else
         {
             Velocity = new(Mathf.Clamp(Velocity.X, -MaxAirSpeed, MaxAirSpeed), Velocity.Y + (Gravity * (float)delta));
-            GD.Print($"Airborne: {Velocity.Y}");
+            // GD.Print($"Airborne: {Position}");
         }
         MoveAndSlide();
         if(Grounded)

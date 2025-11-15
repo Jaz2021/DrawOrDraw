@@ -36,7 +36,8 @@ public struct SpriteArray2D
             }
         }
     }
-    public byte[] Serialize()
+    public SpritePixel[][] Pixels;
+    public byte[] SerializeImage()
     {
         List<byte> bytes = new();
 
@@ -49,9 +50,22 @@ public struct SpriteArray2D
         }
         return bytes.ToArray();
     }
+    public byte[] Serialize()
+    {
+        List<byte> bytes = new();
+        bytes.Add((byte)Pixels.Length);
+        foreach(var column in Pixels)
+        {
+            foreach(var pixel in column)
+            {
+                bytes.AddRange(pixel.Serialize());
+            }
+        }
+        return bytes.ToArray();
+    }
     public Image CreateImage()
     {
-        return Image.CreateFromData(Pixels[0].Length, Pixels.Length, false, Image.Format.Rgba8, Serialize());
+        return Image.CreateFromData(Pixels[0].Length, Pixels.Length, false, Image.Format.Rgba8, SerializeImage());
     }
 
     public int findArea()
