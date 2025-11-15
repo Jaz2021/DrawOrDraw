@@ -78,7 +78,8 @@ public partial class Globals : Node
 		// NetworkingV2.SendPacketToAll(objPacket, true);
 		// SpawnObjectPacket.SpawnObjectPacketReceived(objPacket, null);
 		ChangeScene(canvasScene, Vector2.Zero, null);
-		ChangeMenu(PauseMenu);
+		// ChangeMenu(PauseMenu);
+		ChangeMenu(null);
 	}
 	public void StartOnlineGame()
     {
