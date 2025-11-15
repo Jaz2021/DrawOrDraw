@@ -12,7 +12,7 @@ public partial class Scene : Node
     {
         SpawnObjectPacket.SpawnObjectPacketReceived += SpawnObjectPacketReceived;
     }
-    private void SpawnObjectPacketReceived(SpawnObjectPacket packet, ConnectionManager connection)
+    protected virtual void SpawnObjectPacketReceived(SpawnObjectPacket packet, ConnectionManager connection)
     {
         if(connection != null && connection.steamID != NetworkingV2.GetLobbyOwner())
         {
@@ -29,7 +29,7 @@ public partial class Scene : Node
         objects.Add(obj);
 
     }
-    public void SpawnObject(ObjectType type, ulong id, Vector2 position, bool send = false)
+    public virtual void SpawnObject(ObjectType type, ulong id, Vector2 position, bool send = false)
     {
         NetObject netobj = objectPrefabs[type].Instantiate<NetObject>();
         netobj.Init(id, type, objectRoot, position);
@@ -41,7 +41,7 @@ public partial class Scene : Node
             NetworkingV2.SendPacketToAll(packet, true);
         }
     }
-    public void EnterScene(ObjectStructList objectSpawns, Vector2 position)
+    public virtual void EnterScene(ObjectStructList objectSpawns, Vector2 position)
     {
         PlayerObject myPlayer = objectPrefabs[ObjectType.Player].Instantiate<PlayerObject>();
         if (NetworkingV2.isInit)

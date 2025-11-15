@@ -1,0 +1,221 @@
+[gd_scene load_steps=19 format=3 uid="uid://6lg6y02cf3xd"]
+
+[ext_resource type="Script" path="res://Scripts/Canvas/DrawingCanvas.cs" id="1_53v2k"]
+[ext_resource type="Script" uid="uid://cfchhj7wn1u4x" path="res://Scripts/Scenes/Scene.cs" id="1_vf7j4"]
+[ext_resource type="Texture2D" path="res://sprite_textures/canvas48.png" id="2_ox5ak"]
+[ext_resource type="Texture2D" path="res://sprite_textures/pencil_selected.png" id="3_bcll6"]
+[ext_resource type="Texture2D" path="res://sprite_textures/eraser_unselected.png" id="6_af40i"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/blackicon.png" id="7_23gnd"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/redicon.png" id="8_j000p"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/greenicon.png" id="9_aieyg"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/blueicon.png" id="10_0mo3k"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/purpleicon.png" id="11_jxeyk"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/brownicon.png" id="12_0r78b"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/greyicon.png" id="13_jkn40"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/orangeicon.png" id="14_crams"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/yellowicon.png" id="15_syyqk"]
+[ext_resource type="Texture2D" path="res://sprite_textures/color_button_icons/pinkicon.png" id="16_5h3v8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bcll6"]
+
+[sub_resource type="Theme" id="Theme_qjf80"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqmdm"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("objectRoot")]
+script = ExtResource("1_vf7j4")
+objectRoot = NodePath("ObjectRoot")
+objectPrefabs = Dictionary[int, PackedScene]({
+0: null
+})
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(10, 10)
+texture = ExtResource("2_ox5ak")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(10, 10)
+texture = ExtResource("2_ox5ak")
+script = ExtResource("1_53v2k")
+pixelSize = null
+size = null
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PencilButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -238.0
+offset_top = -293.0
+offset_right = -198.0
+offset_bottom = -253.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("3_bcll6")
+
+[node name="BlackButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = -240.0
+offset_right = -249.0
+offset_bottom = -200.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("7_23gnd")
+
+[node name="RedButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = -191.0
+offset_right = -249.0
+offset_bottom = -151.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("8_j000p")
+
+[node name="GreenButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = -142.0
+offset_right = -249.0
+offset_bottom = -102.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("9_aieyg")
+
+[node name="BlueButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = -93.0
+offset_right = -249.0
+offset_bottom = -53.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("10_0mo3k")
+
+[node name="PurpleButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = -44.0
+offset_right = -249.0
+offset_bottom = -4.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("11_jxeyk")
+
+[node name="BrownButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = 5.0
+offset_right = -249.0
+offset_bottom = 45.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("12_0r78b")
+
+[node name="GreyButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = 54.0
+offset_right = -249.0
+offset_bottom = 94.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("13_jkn40")
+
+[node name="OrangeButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = 103.0
+offset_right = -249.0
+offset_bottom = 143.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("14_crams")
+
+[node name="YellowButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = 152.0
+offset_right = -249.0
+offset_bottom = 192.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("15_syyqk")
+
+[node name="PinkButton" type="Button" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_bcll6")
+offset_left = -289.0
+offset_top = 201.0
+offset_right = -249.0
+offset_bottom = 241.0
+theme = SubResource("Theme_qjf80")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wqmdm")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("16_5h3v8")
+
+[node name="EraserButton" type="Button" parent="Camera2D"]
+offset_left = -191.0
+offset_top = -293.0
+offset_right = -151.0
+offset_bottom = -253.0
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("6_af40i")
+
+[node name="Submit" type="Button" parent="Camera2D"]
+offset_left = 146.0
+offset_top = 251.0
+offset_right = 227.0
+offset_bottom = 293.0
+text = "Submit"
+
+[node name="ObjectRoot" type="Node2D" parent="."]
+
+[connection signal="pressed" from="Camera2D/PencilButton" to="Sprite2D" method="OnPencilClick"]
+[connection signal="pressed" from="Camera2D/BlackButton" to="Sprite2D" method="OnBlackPress"]
+[connection signal="pressed" from="Camera2D/RedButton" to="Sprite2D" method="OnRedPress"]
+[connection signal="pressed" from="Camera2D/GreenButton" to="Sprite2D" method="OnGreenPress"]
+[connection signal="pressed" from="Camera2D/BlueButton" to="Sprite2D" method="OnBluePress"]
+[connection signal="pressed" from="Camera2D/PurpleButton" to="Sprite2D" method="OnPurplePress"]
+[connection signal="pressed" from="Camera2D/BrownButton" to="Sprite2D" method="OnBrownPress"]
+[connection signal="pressed" from="Camera2D/GreyButton" to="Sprite2D" method="OnGreyPress"]
+[connection signal="pressed" from="Camera2D/OrangeButton" to="Sprite2D" method="OnOrangePress"]
+[connection signal="pressed" from="Camera2D/YellowButton" to="Sprite2D" method="OnYellowPress"]
+[connection signal="pressed" from="Camera2D/PinkButton" to="Sprite2D" method="OnPinkPress"]
+[connection signal="pressed" from="Camera2D/EraserButton" to="Sprite2D" method="OnEraserClick"]
+[connection signal="pressed" from="Camera2D/Submit" to="Sprite2D" method="OnSubmitClick"]
