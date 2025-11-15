@@ -66,9 +66,11 @@ public partial class Globals : Node
             ChangeScene(stageScene, Vector2.Zero);
 			if(currentScene is StageScene s)
             {
+				
                 s.SpawnStitchedChars(otherPlayerChar, c);
             }
         }
+		otherPlayerChar = c;
     }
 
     public void SendStartGamePacket(ConnectionManager connection)
