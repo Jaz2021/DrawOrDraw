@@ -4,13 +4,9 @@ using Godot;
 public partial class PlayerPacket : IPacket<PlayerPacket>
 {
     [SerializeData]
-    public Vector3 position;
+    public Vector2 position;
     [SerializeData]
-    public Vector3 rotation;
-    [SerializeData]
-    public Vector3 velocity;
-    [SerializeData]
-    public Vector3 angularVelocity;
+    public Vector2 velocity;
     [SerializeData]
     public ulong id;
 }

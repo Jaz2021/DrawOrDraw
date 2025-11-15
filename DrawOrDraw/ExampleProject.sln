@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9C3EB85F-A6E2-4681-8FD7-7F6DE2E28EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C3EB85F-A6E2-4681-8FD7-7F6DE2E28EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C3EB85F-A6E2-4681-8FD7-7F6DE2E28EEF}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{9C3EB85F-A6E2-4681-8FD7-7F6DE2E28EEF}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{9C3EB85F-A6E2-4681-8FD7-7F6DE2E28EEF}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{9C3EB85F-A6E2-4681-8FD7-7F6DE2E28EEF}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{6C48FF82-1263-45B6-9A47-16FCA92E5083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C48FF82-1263-45B6-9A47-16FCA92E5083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C48FF82-1263-45B6-9A47-16FCA92E5083}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{6C48FF82-1263-45B6-9A47-16FCA92E5083}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{6C48FF82-1263-45B6-9A47-16FCA92E5083}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{6C48FF82-1263-45B6-9A47-16FCA92E5083}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
