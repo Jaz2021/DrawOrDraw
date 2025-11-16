@@ -45,7 +45,7 @@ public partial class StageScene : Scene
         } else
         {
             p2.GlobalPosition = p1Start.GlobalPosition;
-            playerController.SetPlayerObject(p2);
+            playerController.SetPlayerObject(p1);
 
             p1.GlobalPosition = p2Start.GlobalPosition;
         }
