@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://of6ubng70q68"]
+[gd_scene load_steps=5 format=3 uid="uid://of6ubng70q68"]
 
 [ext_resource type="Script" uid="uid://bhjsbyl8vaiwx" path="res://Scripts/Scenes/StageScene.cs" id="1_8k7wh"]
 [ext_resource type="Script" uid="uid://b4k4nqwvm4jgy" path="res://Scripts/Player/MainPlayer.cs" id="3_8k7wh"]
+[ext_resource type="PackedScene" uid="uid://bsh8p7mmffpjq" path="res://Objects/healthbar.tscn" id="4_0f5h7"]
 [ext_resource type="PackedScene" uid="uid://bhebw2xt4df18" path="res://arenas/platform_arena.tscn" id="4_iufkg"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("p1Start", "p2Start", "objectRoot", "playerController")]
@@ -28,3 +29,17 @@ position = Vector2(-686, -127)
 position = Vector2(707, -142)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Healthbar-P1" parent="Camera2D" instance=ExtResource("4_0f5h7")]
+offset_left = -950.0
+offset_top = -530.0
+offset_right = -950.0
+offset_bottom = -530.0
+scale = Vector2(2, 2)
+
+[node name="Healthbar-P2" parent="Camera2D" instance=ExtResource("4_0f5h7")]
+offset_left = 540.0
+offset_top = -530.0
+offset_right = 540.0
+offset_bottom = -530.0
+scale = Vector2(2, 2)
