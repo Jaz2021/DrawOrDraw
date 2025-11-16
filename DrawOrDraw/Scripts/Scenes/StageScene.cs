@@ -14,6 +14,7 @@ public partial class StageScene : Scene
     public override void _Process(double delta)
     {
         cam.GlobalPosition = (p1.GlobalPosition + p2.GlobalPosition) * 0.5f;
+
     }
     private void ReadyPacketReceived(ReadyPacket packet, ConnectionManager connection)
     {

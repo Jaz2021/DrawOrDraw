@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d0m5d4q64nj3r" path="res://sprite_textures/LimbBackground.png" id="4_1hc70"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnira"]
-size = Vector2(221, 175)
+size = Vector2(78, 131)
 
 [node name="StitchedPlayer" type="CharacterBody2D" node_paths=PackedStringArray("Head", "Torso", "LeftUpperArm", "LeftForearm", "RightUpperArm", "RightForearm", "LeftThigh", "LeftShin", "RightThigh", "RightShin", "Neck", "LeftShoulder", "LeftElbow", "RightShoulder", "RightElbow", "LeftHip", "LeftKnee", "RightHip", "RightKnee", "FootPos")]
 top_level = true
@@ -108,7 +108,7 @@ position = Vector2(-1, 20)
 texture = ExtResource("4_1hc70")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3.5, 20.5)
+position = Vector2(-2, 32.5)
 shape = SubResource("RectangleShape2D_mnira")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

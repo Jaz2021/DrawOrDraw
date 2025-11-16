@@ -21,31 +21,42 @@ public partial class StitchCharacter : NetObject
 		NeutralSpecial,
 		ForwardSpecial
 	}
-	
-	// public override void _Ready()
-	// {
-	// 	PlayerPacket.PlayerPacketReceived += PlayerPacketReceived;
-	// 	base._Ready();
-	// }
-	// private void PlayerPacketReceived(PlayerPacket packet, ConnectionManager connection)
-	// {
-	// 	// GD.Print($"Received player packet with id: {packet.id}, my id: {id}");
-	// 	if (connection != null)
-	// 	{
-	// 		if (id == (ulong)NetworkingV2.steamID && connection.steamID != NetworkingV2.GetLobbyOwner())
-	// 		{
-	// 			// If you are receiving for your own player and it is coming from not the lobby owner, ignore it
-	// 			return;
-	// 		}
-	// 	}
-	// 	// Received packet from myself or the lobby owner, so listen to it
-	// 	if (id == packet.id)
-	// 	{
-	// 		pos = packet.position;
-	// 		vel = packet.velocity;
-	// 		ReceivedUpdate = true;
-	// 	}
-	// }
+
+    // public override void _Ready()
+    // {
+    // 	PlayerPacket.PlayerPacketReceived += PlayerPacketReceived;
+    // 	base._Ready();
+    // }
+    // private void PlayerPacketReceived(PlayerPacket packet, ConnectionManager connection)
+    // {
+    // 	// GD.Print($"Received player packet with id: {packet.id}, my id: {id}");
+    // 	if (connection != null)
+    // 	{
+    // 		if (id == (ulong)NetworkingV2.steamID && connection.steamID != NetworkingV2.GetLobbyOwner())
+    // 		{
+    // 			// If you are receiving for your own player and it is coming from not the lobby owner, ignore it
+    // 			return;
+    // 		}
+    // 	}
+    // 	// Received packet from myself or the lobby owner, so listen to it
+    // 	if (id == packet.id)
+    // 	{
+    // 		pos = packet.position;
+    // 		vel = packet.velocity;
+    // 		ReceivedUpdate = true;
+    // 	}
+    // }
+    public override void _Process(double delta)
+    {
+        RotateLegsRight(delta);
+    }
+	public void RotateLegsRight(double delta)
+    {
+        RightHip.Rotate((float)delta * Velocity.X);
+		LeftHip.Rotate((float)delta * Velocity.X);
+		RightKnee.Rotate(-(float)delta * Velocity.X);
+		LeftKnee.Rotate(-(float)delta * Velocity.X);
+    }
 	public void SetTextures(Dictionary<textName, SpriteArray2D> parts)
 	{
 		// GD.Print($"Setting tetures {parts.Count}");
