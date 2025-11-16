@@ -40,10 +40,13 @@ public partial class StageScene : Scene
         if (NetworkingV2.IsLobbyOwner())
         {
             p1.GlobalPosition = p1Start.GlobalPosition;
+            playerController.SetPlayerObject(p1);
             p2.GlobalPosition = p2Start.GlobalPosition;
         } else
         {
             p2.GlobalPosition = p1Start.GlobalPosition;
+            playerController.SetPlayerObject(p2);
+
             p1.GlobalPosition = p2Start.GlobalPosition;
         }
         

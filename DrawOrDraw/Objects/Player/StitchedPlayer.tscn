@@ -31,6 +31,8 @@ LeftHip = NodePath("LeftHip")
 LeftKnee = NodePath("LeftHip/LeftKnee")
 RightHip = NodePath("RightHip")
 RightKnee = NodePath("RightHip/RightKnee")
+MaxGroundSpeed = 500.0
+MaxAirSpeed = 450.0
 FootPos = NodePath("RayCast2D")
 Gravity = 98.81
 
