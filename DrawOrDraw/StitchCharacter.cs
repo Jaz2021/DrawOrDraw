@@ -49,6 +49,7 @@ public partial class StitchCharacter : NetObject
     public override void _Process(double delta)
     {
         RotateLegsRight(delta);
+		FlailArms();
     }
 	public void RotateLegsRight(double delta)
     {
@@ -57,6 +58,16 @@ public partial class StitchCharacter : NetObject
 		RightKnee.Rotate(-(float)delta * Velocity.X);
 		LeftKnee.Rotate(-(float)delta * Velocity.X);
     }
+
+	public void FlailArms()
+    {
+        LeftShoulder.Rotation = -Velocity.Angle();
+		LeftElbow.Rotation = -Velocity.Angle();
+		RightShoulder.Rotation = -Velocity.Angle();
+		RightElbow.Rotation = -Velocity.Angle();
+    }
+
+
 	public void SetTextures(Dictionary<textName, SpriteArray2D> parts)
 	{
 		// GD.Print($"Setting tetures {parts.Count}");
