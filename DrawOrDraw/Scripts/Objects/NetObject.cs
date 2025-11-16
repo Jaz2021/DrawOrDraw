@@ -34,6 +34,10 @@ public partial class NetObject : CharacterBody2D
         this.objRoot = objRoot;
         pos = position;
         this.type = type;
+    }
+    public override void _Ready()
+    {
+        base._Ready();
         PlayerPacket.PlayerPacketReceived += ReceivedPacket;
     }
     private void ReceivedPacket(PlayerPacket packet, ConnectionManager connection)
@@ -73,7 +77,7 @@ public partial class NetObject : CharacterBody2D
             Velocity = new(0f, Velocity.Y);
         }
         PlayerPacket packet = new(id, GlobalPosition, Velocity);
-        NetworkingV2.SendPacketToAll(packet, true);
-        GD.Print("Sending packet");
+        NetworkingV2.SendPacketToAll(packet);
+        // GD.Print("Sending packet");
     }
 }
