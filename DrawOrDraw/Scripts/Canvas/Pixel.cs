@@ -1,5 +1,6 @@
 // var test = Image.createFromData(32, 32, false, Image.Format.Rgb8, [0, 0, 0, 0, 0, 0, 0])
 
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Godot;
@@ -66,8 +67,7 @@ public struct SpriteArray2D
     {
         return Image.CreateFromData(Pixels[0].Length, Pixels.Length, false, Image.Format.Rgba8, SerializeImage());
     }
-
-    public int findArea()
+    public Vector4I FindMaxMinCoords()
     {
         int maxX, minX, maxY, minY;
         maxX = minX = maxY = minY = 0;
@@ -99,9 +99,14 @@ public struct SpriteArray2D
                 }
             }
         }
-
-        int deltaX = maxX - minX;
-        int deltaY = maxY - minY;
+        return new(minX, maxX, minY, maxY);
+    }
+    public int findArea()
+    {
+        
+        var coords = FindMaxMinCoords();
+        int deltaX = coords.Y - coords.X;
+        int deltaY = coords.W - coords.Z;
         return deltaX * deltaY;
     }
 }

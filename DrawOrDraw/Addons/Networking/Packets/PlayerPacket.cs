@@ -9,4 +9,6 @@ public partial class PlayerPacket : IPacket<PlayerPacket>
     public Vector2 velocity;
     [SerializeData]
     public ulong id;
+    [SerializeData]
+    public bool headed;
 }

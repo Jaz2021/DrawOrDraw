@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdgifensphash"]
+
+[ext_resource type="Script" uid="uid://bdgwyh4nfwp4q" path="res://Head.cs" id="1_hukeq"]
+[ext_resource type="Texture2D" uid="uid://d0m5d4q64nj3r" path="res://sprite_textures/LimbBackground.png" id="2_pij62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akhm5"]
+
+[node name="Head" type="CharacterBody2D" node_paths=PackedStringArray("collider", "sprite")]
+script = ExtResource("1_hukeq")
+collider = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pij62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_akhm5")

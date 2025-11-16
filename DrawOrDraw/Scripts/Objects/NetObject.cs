@@ -6,11 +6,11 @@ public partial class NetObject : CharacterBody2D
     protected bool ReceivedUpdate = false;
     protected Vector2 pos;
     protected Vector2 vel;
-    [Export] private float JumpRayLength; // Debug
-    [Export] private float MaxGroundSpeed = 5f;
-    [Export] private float MaxAirSpeed = 4.5f;
-    [Export] private RayCast2D FootPos; // Suggested to use a Marker3D to show the position
-    [Export] private float Gravity = -98.81f;
+    [Export] protected float JumpRayLength; // Debug
+    [Export] protected float MaxGroundSpeed = 5f;
+    [Export] protected float MaxAirSpeed = 4.5f;
+    [Export] protected RayCast2D FootPos; // Suggested to use a Marker3D to show the position
+    [Export] protected float Gravity = -98.81f;
     public ObjectType type
     {
         get;
@@ -83,7 +83,7 @@ public partial class NetObject : CharacterBody2D
         // GD.Print($"Packet id: {id}");
         if(id == (ulong)NetworkingV2.steamID)
         {
-            PlayerPacket packet = new(id, GlobalPosition, Velocity);
+            PlayerPacket packet = new(false, id, GlobalPosition, Velocity);
             NetworkingV2.SendPacketToAll(packet);
         }
         
