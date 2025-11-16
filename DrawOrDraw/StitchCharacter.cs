@@ -62,16 +62,16 @@ public partial class StitchCharacter : NetObject
 
 	public void FlailArms()
     {
-        LeftShoulder.Rotation = Velocity.Angle();
+        LeftShoulder.Rotation = new Vector2(Velocity.X, -Velocity.Y).Angle();
 		LeftElbow.Rotation = -Velocity.Angle();
-		RightShoulder.Rotation = -Velocity.Angle();
+		RightShoulder.Rotation = new Vector2(-Velocity.X, -Velocity.Y).Angle();
 		RightElbow.Rotation = Velocity.Angle();
     }
 	public void OnHeadEntered(Node2D node)
     {
         if(node is StitchCharacter s)
         {
-            if(s != this)
+            if(s != this && s.Velocity.Y >= 0)
             {
                 s.Kill();
             }
