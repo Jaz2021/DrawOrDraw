@@ -96,7 +96,7 @@ public partial class StitchCharacter : NetObject
         {
             if(s != this && s.Velocity.Y >= 0)
             {
-                s.Kill();
+                Kill();
             }
         }
     }
@@ -106,12 +106,16 @@ public partial class StitchCharacter : NetObject
 		stock--;
 		if (stock <= 0)
         {
-            GD.Print("You lost the game loser lmao");
-			QueueFree();
-			head.QueueFree();	
-			WinGamePacket packet = new();
-			NetworkingV2.SendPacketToAll(packet, true);
-			Globals.Instance.ChangeScene(DefeatScene, Vector2.Zero);
+			if(id == (ulong)NetworkingV2.steamID)
+            {
+                GD.Print("You lost the game loser lmao");
+				QueueFree();
+				head.QueueFree();	
+				WinGamePacket packet = new();
+				NetworkingV2.SendPacketToAll(packet, true);
+				Globals.Instance.ChangeScene(DefeatScene, Vector2.Zero);
+            }
+            
         } else
         {
            	GlobalPosition = Vector2.Zero;

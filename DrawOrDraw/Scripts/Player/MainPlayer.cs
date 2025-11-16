@@ -84,6 +84,7 @@ public partial class MainPlayer : Node
         if (e.IsActionPressed("Interact"))
         {
             myObj.Throw(moveDir.Normalized());
+            GD.Print("Throwing testing");
         }
         if (e.IsActionPressed("Pause"))
         {
