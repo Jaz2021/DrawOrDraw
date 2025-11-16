@@ -31,10 +31,10 @@ LeftHip = NodePath("LeftHip")
 LeftKnee = NodePath("LeftHip/LeftKnee")
 RightHip = NodePath("RightHip")
 RightKnee = NodePath("RightHip/RightKnee")
-MaxGroundSpeed = 600.0
-MaxAirSpeed = 450.0
+MaxGroundSpeed = 2400.0
+MaxAirSpeed = 600.0
 FootPos = NodePath("RayCast2D")
-Gravity = 98.81
+Gravity = 300.0
 
 [node name="Torso" type="Sprite2D" parent="."]
 texture_filter = 1

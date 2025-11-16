@@ -9,6 +9,9 @@ public partial class MainPlayer : Node
     [Export] private float groundAccel;
     [Export] private float airAccel;
     [Export] private float JumpForce;
+    [Export] private int jumps = 3;
+    private int jumpCount = 0;
+    // private float gravMult = 1f;
     private Vector2 moveDir = Vector2.Zero;
     
     public void SetPlayerObject(StitchCharacter pobj)
@@ -34,7 +37,7 @@ public partial class MainPlayer : Node
         // }
         if (Input.IsActionPressed("MoveForward"))
         {
-            GD.Print("Forward pressed");
+            // GD.Print("Forward pressed");
 
             inputDir.Y = -1f;
             // moveDir.Z -= moveSpeedForward * (float)delta;
@@ -42,7 +45,11 @@ public partial class MainPlayer : Node
         if (Input.IsActionPressed("MoveBack"))
         {
             inputDir.Y = 1f;
+            myObj.gravMult = 2f;
             // moveDir.Z += moveSpeedForward * (float)delta;
+        } else
+        {
+            myObj.gravMult = 1f;
         }
         if (Input.IsActionPressed("MoveLeft"))
         {
@@ -100,6 +107,11 @@ public partial class MainPlayer : Node
             if (myObj.Grounded && moveDir.Y == 0)
             {
                 moveDir.Y = -JumpForce;
+                jumps = 0;
+            } else if(Input.IsActionJustPressed("Jump") && jumpCount < jumps)
+            {
+                moveDir.Y = -JumpForce;
+                jumpCount += 1;
             }
         }
         myObj.Velocity += moveDir;

@@ -27,6 +27,8 @@ public partial class NetObject : CharacterBody2D
         protected set;
     }
     protected Node2D objRoot;
+	public float gravMult = 1f;
+
     public void Init(ulong id, ObjectType type, Node2D objRoot, Vector2 position)
     {
         // GD.Print($"Initiallizing NetObj with id {id}");
@@ -70,7 +72,7 @@ public partial class NetObject : CharacterBody2D
             Velocity = new(Mathf.Clamp(Velocity.X, -MaxGroundSpeed, MaxGroundSpeed), Velocity.Y);
         } else
         {
-            Velocity = new(Mathf.Clamp(Velocity.X, -MaxAirSpeed, MaxAirSpeed), Velocity.Y + (Gravity * (float)delta));
+            Velocity = new(Mathf.Clamp(Velocity.X, -MaxAirSpeed, MaxAirSpeed), Velocity.Y + (Gravity * (float)delta * gravMult));
             // GD.Print($"Airborne: {Position}");
         }
         MoveAndSlide();

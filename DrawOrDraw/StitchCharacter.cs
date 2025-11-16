@@ -7,7 +7,7 @@ public partial class StitchCharacter : NetObject
 	[Export] private float RotationSpeed = 0.05f;
 	[Export] private Sprite2D Head, Torso, LeftUpperArm, LeftForearm, RightUpperArm, RightForearm, LeftThigh, LeftShin, RightThigh, RightShin;
 	[Export] private Node2D Neck, LeftShoulder, LeftElbow, RightShoulder, RightElbow, LeftHip, LeftKnee, RightHip, RightKnee;
-	
+	public float gravMult = 1f;
 	public Dictionary<textName, SpriteArray2D> bodyParts = new();
 	public enum Attacks {
 		NeutralTilt,
@@ -64,9 +64,9 @@ public partial class StitchCharacter : NetObject
 	public void FlailArms()
     {
         LeftShoulder.Rotation = Velocity.Angle();
-		LeftElbow.Rotation = Velocity.Angle();
+		LeftElbow.Rotation = -Velocity.Angle();
 		RightShoulder.Rotation = -Velocity.Angle();
-		RightElbow.Rotation = -Velocity.Angle();
+		RightElbow.Rotation = Velocity.Angle();
     }
 
 
