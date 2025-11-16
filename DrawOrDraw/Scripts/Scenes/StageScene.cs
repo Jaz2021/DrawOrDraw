@@ -23,8 +23,8 @@ public partial class StageScene : Scene
         GD.Print("Spawning stitched charas");
         objectRoot.CallDeferred("add_child", p1);
         objectRoot.CallDeferred("add_child", p2);
-        if(NetworkingV2.IsLobbyOwner())
-        {
+        // if(NetworkingV2.IsLobbyOwner())
+        // {
             p1.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
             foreach(var lobbyMember in NetworkingV2.GetLobbyMembers())
             {
@@ -36,19 +36,19 @@ public partial class StageScene : Scene
                 break;
             }
 
-        } else
-        {
-            p2.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
-            foreach(var lobbyMember in NetworkingV2.GetLobbyMembers())
-            {
-                if(lobbyMember.steamID == NetworkingV2.steamID)
-                {
-                    continue;
-                }
-                p1.Init((ulong)lobbyMember.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
-                break;
-            }
-        }
+        // } else
+        // {
+            // p2.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
+            // foreach(var lobbyMember in NetworkingV2.GetLobbyMembers())
+            // {
+            //     if(lobbyMember.steamID == NetworkingV2.steamID)
+            //     {
+            //         continue;
+            //     }
+            //     p1.Init((ulong)lobbyMember.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
+            //     break;
+            // }
+        // }
         if (NetworkingV2.IsLobbyOwner())
         {
             p1.GlobalPosition = p1Start.GlobalPosition;
