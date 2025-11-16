@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using Godot;
 using Networking_V2;
+
+public struct Animation
+{
+    private float startTime;
+	private float endTime;
+	private float jointRotations;
+}
 public partial class StitchCharacter : NetObject
 
 {
@@ -12,7 +19,8 @@ public partial class StitchCharacter : NetObject
 	{
 		this.id = id;
 	}
-	public enum Attacks {
+	public enum Attacks
+	{
 		NeutralTilt,
 		ForwardTilt,
 		DownTilt,
@@ -24,9 +32,18 @@ public partial class StitchCharacter : NetObject
 		UpSpecial,
 		DownSpecial,
 		NeutralSpecial,
-		ForwardSpecial
+		ForwardSpecial,
+		NoAttack
 	}
-	
+
+	public enum PlayerState
+	{
+		Idle,
+		Dead,
+		Attacking,
+		Moving
+	}
+
 	public override void _Ready()
 	{
 		PlayerPacket.PlayerPacketReceived += PlayerPacketReceived;
@@ -54,12 +71,12 @@ public partial class StitchCharacter : NetObject
 	public void SetTextures(Dictionary<textName, SpriteArray2D> parts)
 	{
 		GD.Print("Setting tetures");
-		foreach(var (key, part) in parts)
+		foreach (var (key, part) in parts)
 		{
-			switch(key)
+			switch (key)
 			{
 				case textName.head:
-					
+
 					bodyParts[textName.head] = part;
 					Head.Texture = ImageTexture.CreateFromImage(part.CreateImage());
 					break;
