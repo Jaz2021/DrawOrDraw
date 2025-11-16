@@ -4,8 +4,10 @@ using Networking_V2;
 public partial class StitchCharacter : NetObject
 
 {
+	[Export] private float RotationSpeed = 0.05f;
 	[Export] private Sprite2D Head, Torso, LeftUpperArm, LeftForearm, RightUpperArm, RightForearm, LeftThigh, LeftShin, RightThigh, RightShin;
 	[Export] private Node2D Neck, LeftShoulder, LeftElbow, RightShoulder, RightElbow, LeftHip, LeftKnee, RightHip, RightKnee;
+	
 	public Dictionary<textName, SpriteArray2D> bodyParts = new();
 	public enum Attacks {
 		NeutralTilt,
@@ -52,10 +54,10 @@ public partial class StitchCharacter : NetObject
     }
 	public void RotateLegsRight(double delta)
     {
-        RightHip.Rotate((float)delta * Velocity.X);
-		LeftHip.Rotate((float)delta * Velocity.X);
-		RightKnee.Rotate(-(float)delta * Velocity.X);
-		LeftKnee.Rotate(-(float)delta * Velocity.X);
+        RightHip.Rotate((float)delta * Velocity.X * RotationSpeed);
+		LeftHip.Rotate((float)delta * Velocity.X * RotationSpeed);
+		RightKnee.Rotate(-(float)delta * Velocity.X * RotationSpeed);
+		LeftKnee.Rotate(-(float)delta * Velocity.X * RotationSpeed);
     }
 	public void SetTextures(Dictionary<textName, SpriteArray2D> parts)
 	{

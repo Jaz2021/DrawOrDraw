@@ -5,10 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bsh8p7mmffpjq" path="res://Objects/healthbar.tscn" id="4_0f5h7"]
 [ext_resource type="PackedScene" uid="uid://bhebw2xt4df18" path="res://arenas/platform_arena.tscn" id="4_iufkg"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("p1Start", "p2Start", "objectRoot", "playerController")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("p1Start", "p2Start", "cam", "objectRoot", "playerController")]
 script = ExtResource("1_8k7wh")
 p1Start = NodePath("Node2D")
 p2Start = NodePath("Node2D2")
+cam = NodePath("Camera2D")
 objectRoot = NodePath("ObjectRoot")
 playerController = NodePath("PlayerController")
 

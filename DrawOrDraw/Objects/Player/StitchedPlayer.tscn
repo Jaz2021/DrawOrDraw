@@ -81,6 +81,7 @@ texture = ExtResource("3_4nip5")
 
 [node name="LeftHip" type="Node2D" parent="."]
 position = Vector2(-14, 22)
+rotation = 1.5707964
 
 [node name="LeftThigh" type="Sprite2D" parent="LeftHip"]
 position = Vector2(-1, 20)
@@ -88,6 +89,7 @@ texture = ExtResource("4_1hc70")
 
 [node name="LeftKnee" type="Node2D" parent="LeftHip"]
 position = Vector2(0, 40)
+rotation = -1.5707964
 
 [node name="LeftShin" type="Sprite2D" parent="LeftHip/LeftKnee"]
 position = Vector2(-1, 20)
@@ -95,6 +97,7 @@ texture = ExtResource("4_1hc70")
 
 [node name="RightHip" type="Node2D" parent="."]
 position = Vector2(14, 22)
+rotation = -1.5707964
 
 [node name="RightThigh" type="Sprite2D" parent="RightHip"]
 position = Vector2(-1, 20)
@@ -102,6 +105,7 @@ texture = ExtResource("4_1hc70")
 
 [node name="RightKnee" type="Node2D" parent="RightHip"]
 position = Vector2(0, 40)
+rotation = 1.5707964
 
 [node name="RightShin" type="Sprite2D" parent="RightHip/RightKnee"]
 position = Vector2(-1, 20)
