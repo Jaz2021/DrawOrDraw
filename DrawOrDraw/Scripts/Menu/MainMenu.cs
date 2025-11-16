@@ -5,17 +5,19 @@ public partial class MainMenu : MenuController
     [Export] private Menu NewGameMenu;
     public void NewGamePressed()
     {
-        GD.Print("Received new game pressed");
-        EnterMenu(NewGameMenu);
+        // GD.Print("Received new game pressed");
+        // EnterMenu(NewGameMenu);
+        Globals.Instance.StartOnlineGame();
+
     }
     public void StartOnlineGame()
     {
-        GD.Print("Start Online game");
+        // GD.Print("Start Online game");
         Globals.Instance.StartOnlineGame();
     }
     public void StartOfflineGame()
     {
-        GD.Print("Start offline game");
+        // GD.Print("Start offline game");
         Globals.Instance.StartOfflineGame();
     }
     public void QuitPressed()
