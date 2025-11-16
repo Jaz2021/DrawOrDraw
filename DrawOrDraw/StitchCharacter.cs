@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Networking_V2;
 public partial class StitchCharacter : NetObject
 {
 	[Export] private int stock = 3;
@@ -7,7 +8,6 @@ public partial class StitchCharacter : NetObject
 	[Export] private float throwVelocity = 10f;
 	[Export] private Sprite2D Head, Torso, LeftUpperArm, LeftForearm, RightUpperArm, RightForearm, LeftThigh, LeftShin, RightThigh, RightShin;
 	[Export] private Node2D Neck, LeftShoulder, LeftElbow, RightShoulder, RightElbow, LeftHip, LeftKnee, RightHip, RightKnee;
-<<<<<<< HEAD
 	[Export] private PackedScene VictoryScene, DefeatScene;
 	public Dictionary<textName, SpriteArray2D> bodyParts = new();
 	
@@ -36,11 +36,9 @@ public partial class StitchCharacter : NetObject
     // 		ReceivedUpdate = true;
     // 	}
     // }
-=======
 	[Export] private CollisionShape2D headCollider;
 	[Export] private PackedScene headScene;
 	private Head head;
-	public Dictionary<textName, SpriteArray2D> bodyParts = new();
 	public enum Attacks {
 		NeutralTilt,
 		ForwardTilt,
@@ -56,7 +54,6 @@ public partial class StitchCharacter : NetObject
 		ForwardSpecial
 	}
 	public bool headThrown = false;
->>>>>>> d9e4de84a9f218fe9180052c3beaa08c365a6d9d
     public override void _Process(double delta)
     {
         RotateLegsRight(delta);
