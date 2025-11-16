@@ -101,14 +101,14 @@ public partial class MainPlayer : Node
         {
             return;
         }
-        if (Input.IsActionPressed("Jump"))
+        if (Input.IsActionJustPressed("Jump"))
         {
             // GD.Print("Checking if on ground");
             if (myObj.Grounded && moveDir.Y == 0)
             {
                 moveDir.Y = -JumpForce;
                 jumps = 0;
-            } else if(Input.IsActionJustPressed("Jump") && jumpCount < jumps)
+            } else if(jumpCount < jumps)
             {
                 moveDir.Y = -JumpForce;
                 jumpCount += 1;
