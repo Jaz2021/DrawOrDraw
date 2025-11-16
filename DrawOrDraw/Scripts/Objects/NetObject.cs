@@ -39,15 +39,17 @@ public partial class NetObject : CharacterBody2D
     {
         base._Ready();
         PlayerPacket.PlayerPacketReceived += ReceivedPacket;
+        GD.Print("Listening for Player packets");
     }
     private void ReceivedPacket(PlayerPacket packet, ConnectionManager connection)
     {
         GD.Print($"Received packet for pid: {packet.id}");
-        if(packet.id == id)
-        {
-            Velocity = packet.velocity;
-            Position = packet.position;
-        }
+        // if(packet.id == id)
+        // {
+        
+        Velocity = packet.velocity;
+        Position = packet.position;
+        // }
     }
 
     protected bool IsOnGround()

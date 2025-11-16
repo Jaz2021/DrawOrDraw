@@ -25,14 +25,14 @@ public partial class StageScene : Scene
         objectRoot.CallDeferred("add_child", p2);
         if(NetworkingV2.IsLobbyOwner())
         {
-            p1.Init((ulong)NetworkingV2.steamID);
+            p1.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
             foreach(var lobbyMember in NetworkingV2.GetLobbyMembers())
             {
                 if(lobbyMember.steamID == NetworkingV2.steamID)
                 {
                     continue;
                 }
-                p2.Init((ulong)lobbyMember.steamID);
+                p2.Init((ulong)lobbyMember.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
                 break;
             }
 
