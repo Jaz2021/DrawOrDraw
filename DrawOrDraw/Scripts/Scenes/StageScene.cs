@@ -6,11 +6,15 @@ public partial class StageScene : Scene
 {
     private StitchCharacter p1, p2;
     [Export] private Node2D p1Start, p2Start;
+    [Export] private Camera2D cam;
     public override void _Ready()
     {
         ReadyPacket.ReadyPacketReceived += ReadyPacketReceived;
     }
-
+    public override void _Process(double delta)
+    {
+        cam.GlobalPosition = (p1.GlobalPosition + p2.GlobalPosition) * 0.5f;
+    }
     private void ReadyPacketReceived(ReadyPacket packet, ConnectionManager connection)
     {
         
