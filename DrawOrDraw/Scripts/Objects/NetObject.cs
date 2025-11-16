@@ -79,8 +79,12 @@ public partial class NetObject : CharacterBody2D
             Velocity = new(0f, Velocity.Y);
         }
         GD.Print($"Packet id: {id}");
-        PlayerPacket packet = new(id, GlobalPosition, Velocity);
-        NetworkingV2.SendPacketToAll(packet);
+        if(id == (ulong)NetworkingV2.steamID)
+        {
+            PlayerPacket packet = new(id, GlobalPosition, Velocity);
+            NetworkingV2.SendPacketToAll(packet);
+        }
+        
         // GD.Print("Sending packet");
     }
 }
