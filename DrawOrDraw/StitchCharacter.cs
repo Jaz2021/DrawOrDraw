@@ -65,6 +65,7 @@ public partial class StitchCharacter : NetObject
         {
             return;
         }
+		GD.Print("Throwing head");
 		headThrown = true;
         head.GlobalPosition = GlobalPosition;
 		head.Velocity = throwVelocity * direction;
