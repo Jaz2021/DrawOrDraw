@@ -31,6 +31,7 @@ position = Vector2(707, -142)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Healthbar-P1" parent="Camera2D" instance=ExtResource("4_0f5h7")]
+visible = false
 offset_left = -950.0
 offset_top = -530.0
 offset_right = -950.0
@@ -38,6 +39,7 @@ offset_bottom = -530.0
 scale = Vector2(2, 2)
 
 [node name="Healthbar-P2" parent="Camera2D" instance=ExtResource("4_0f5h7")]
+visible = false
 offset_left = 540.0
 offset_top = -530.0
 offset_right = 540.0
