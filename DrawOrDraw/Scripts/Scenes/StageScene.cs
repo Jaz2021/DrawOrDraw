@@ -36,6 +36,18 @@ public partial class StageScene : Scene
                 break;
             }
 
+        } else
+        {
+            p2.Init((ulong)NetworkingV2.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
+            foreach(var lobbyMember in NetworkingV2.GetLobbyMembers())
+            {
+                if(lobbyMember.steamID == NetworkingV2.steamID)
+                {
+                    continue;
+                }
+                p1.Init((ulong)lobbyMember.steamID, ObjectType.Player, objectRoot, Vector2.Zero);
+                break;
+            }
         }
         if (NetworkingV2.IsLobbyOwner())
         {
