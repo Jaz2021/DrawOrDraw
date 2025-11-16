@@ -21,6 +21,7 @@ public partial class Globals : Node
 	[Export] private PackedScene StitchChar;
 	[Export] private PackedScene canvasScene;
 	[Export] private PackedScene stageScene;
+	[Export] private PackedScene victoryScene;
 	public Scene currentScene = null;
 	private MenuController currentMenu = null;
 	private Env currentEnv = null;
@@ -44,7 +45,13 @@ public partial class Globals : Node
 		NetworkingV2.Init(false);
 		StartGamePacket.StartGamePacketReceived += StartOnlineGame;
 		SpritePacket.SpritePacketReceived += SpritePacketReceived;
+		WinGamePacket.WinGamePacketReceived += WinGameReceived;
 	}
+
+    private void WinGameReceived(WinGamePacket packet, ConnectionManager connection)
+    {
+        ChangeScene(victoryScene, Vector2.Zero);
+    }
 
     private void SpritePacketReceived(SpritePacket packet, ConnectionManager connection)
     {

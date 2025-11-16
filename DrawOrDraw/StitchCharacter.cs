@@ -8,7 +8,7 @@ public partial class StitchCharacter : NetObject
 	[Export] private float throwVelocity = 10f;
 	[Export] private Sprite2D Head, Torso, LeftUpperArm, LeftForearm, RightUpperArm, RightForearm, LeftThigh, LeftShin, RightThigh, RightShin;
 	[Export] private Node2D Neck, LeftShoulder, LeftElbow, RightShoulder, RightElbow, LeftHip, LeftKnee, RightHip, RightKnee;
-	[Export] private PackedScene VictoryScene, DefeatScene;
+	[Export] private PackedScene DefeatScene;
 	public Dictionary<textName, SpriteArray2D> bodyParts = new();
 	
 
@@ -108,13 +108,20 @@ public partial class StitchCharacter : NetObject
         {
             GD.Print("You lost the game loser lmao");
 			QueueFree();
+			head.QueueFree();	
+			WinGamePacket packet = new();
+			NetworkingV2.SendPacketToAll(packet, true);
 			Globals.Instance.ChangeScene(DefeatScene, Vector2.Zero);
-			
         } else
         {
            	GlobalPosition = Vector2.Zero;
 			Velocity = Vector2.Zero;
         }
+    }
+	public void KnockOffHead()
+    {
+		RandomNumberGenerator rng = new();
+        Throw(new(rng.Randf() * 2f - 1, rng.Randf() * 2f - 1));
     }
 	public void PickupHead()
     {

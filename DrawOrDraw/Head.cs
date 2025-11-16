@@ -51,6 +51,9 @@ public partial class Head : CharacterBody2D
                 if(s.Velocity.Y > 0)
                 {
                     s.Kill();
+                } else
+                {
+                    s.KnockOffHead();
                 }
             }
         }
