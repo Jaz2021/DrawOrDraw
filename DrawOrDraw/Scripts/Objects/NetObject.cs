@@ -38,6 +38,7 @@ public partial class NetObject : CharacterBody2D
     }
     private void ReceivedPacket(PlayerPacket packet, ConnectionManager connection)
     {
+        GD.Print($"Received packet for pid: {packet.id}");
         if(packet.id == id)
         {
             Velocity = packet.velocity;
@@ -72,6 +73,7 @@ public partial class NetObject : CharacterBody2D
             Velocity = new(0f, Velocity.Y);
         }
         PlayerPacket packet = new(id, GlobalPosition, Velocity);
-        NetworkingV2.SendPacketToAll(packet);
+        NetworkingV2.SendPacketToAll(packet, true);
+        GD.Print("Sending packet");
     }
 }
