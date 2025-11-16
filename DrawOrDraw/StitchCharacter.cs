@@ -7,7 +7,6 @@ public partial class StitchCharacter : NetObject
 	[Export] private float RotationSpeed = 0.05f;
 	[Export] private Sprite2D Head, Torso, LeftUpperArm, LeftForearm, RightUpperArm, RightForearm, LeftThigh, LeftShin, RightThigh, RightShin;
 	[Export] private Node2D Neck, LeftShoulder, LeftElbow, RightShoulder, RightElbow, LeftHip, LeftKnee, RightHip, RightKnee;
-	public float gravMult = 1f;
 	public Dictionary<textName, SpriteArray2D> bodyParts = new();
 	public enum Attacks {
 		NeutralTilt,

@@ -19,7 +19,7 @@ playerController = NodePath("PlayerController")
 script = ExtResource("3_8k7wh")
 groundAccel = 33000.0
 airAccel = 3000.0
-JumpForce = 20.0
+JumpForce = 300.0
 
 [node name="FlatArena" parent="." instance=ExtResource("4_iufkg")]
 
