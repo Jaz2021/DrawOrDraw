@@ -44,12 +44,12 @@ public partial class NetObject : CharacterBody2D
     private void ReceivedPacket(PlayerPacket packet, ConnectionManager connection)
     {
         GD.Print($"Received packet for pid: {packet.id}");
-        // if(packet.id == id)
-        // {
+        if(packet.id == id)
+        {
         
-        Velocity = packet.velocity;
-        Position = packet.position;
-        // }
+            Velocity = packet.velocity;
+            Position = packet.position;
+        }
     }
 
     protected bool IsOnGround()
@@ -78,6 +78,7 @@ public partial class NetObject : CharacterBody2D
         {
             Velocity = new(0f, Velocity.Y);
         }
+        GD.Print($"Packet id: {id}");
         PlayerPacket packet = new(id, GlobalPosition, Velocity);
         NetworkingV2.SendPacketToAll(packet);
         // GD.Print("Sending packet");
