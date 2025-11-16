@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://yxwffsugqjge"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhnt8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 214.99998
+offset_top = 388.00003
+offset_right = 511.63135
+offset_bottom = 445.00003
+scale = Vector2(5.195, 5.195)
+theme_override_font_sizes/font_size = 19
+text = "You Win! You knocked their head clean off!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nhnt8")

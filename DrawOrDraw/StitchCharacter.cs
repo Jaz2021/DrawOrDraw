@@ -1,27 +1,14 @@
 using System.Collections.Generic;
 using Godot;
-using Networking_V2;
 public partial class StitchCharacter : NetObject
-
 {
+	[Export] private int stock = 3;
 	[Export] private float RotationSpeed = 0.05f;
 	[Export] private Sprite2D Head, Torso, LeftUpperArm, LeftForearm, RightUpperArm, RightForearm, LeftThigh, LeftShin, RightThigh, RightShin;
 	[Export] private Node2D Neck, LeftShoulder, LeftElbow, RightShoulder, RightElbow, LeftHip, LeftKnee, RightHip, RightKnee;
+	[Export] private PackedScene VictoryScene, DefeatScene;
 	public Dictionary<textName, SpriteArray2D> bodyParts = new();
-	public enum Attacks {
-		NeutralTilt,
-		ForwardTilt,
-		DownTilt,
-		UpTilt,
-		NeutralAir,
-		ForwardAir,
-		UpAir,
-		DownAir,
-		UpSpecial,
-		DownSpecial,
-		NeutralSpecial,
-		ForwardSpecial
-	}
+	
 
     // public override void _Ready()
     // {
@@ -80,6 +67,18 @@ public partial class StitchCharacter : NetObject
 	public void Kill()
     {
         GD.Print("Someone touched my head :(");
+		stock--;
+		if (stock <= 0)
+        {
+            GD.Print("You lost the game loser lmao");
+			QueueFree();
+			Globals.Instance.ChangeScene(DefeatScene, Vector2.Zero);
+			
+        } else
+        {
+           	GlobalPosition = Vector2.Zero;
+			Velocity = Vector2.Zero;
+        }
     }
 
 

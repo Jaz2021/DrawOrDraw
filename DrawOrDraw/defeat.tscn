@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bbpvdmffscxqq"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 226.0
+offset_top = 288.0
+offset_right = 1680.0
+offset_bottom = 924.0
+theme_override_font_sizes/font_size = 64
+text = "lmao look at this person right here, got their head knocked clean off but a scallywag. i bet you feel so ashamed of yourself, bro couldn't keep their head straight, you lost loser "
+autowrap_mode = 3
+clip_text = true
