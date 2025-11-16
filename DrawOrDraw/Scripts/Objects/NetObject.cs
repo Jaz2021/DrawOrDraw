@@ -1,4 +1,5 @@
 using Godot;
+using Networking_V2;
 
 public partial class NetObject : CharacterBody2D
 {
@@ -33,7 +34,15 @@ public partial class NetObject : CharacterBody2D
         this.objRoot = objRoot;
         pos = position;
         this.type = type;
-        ReceivedUpdate = true;
+        PlayerPacket.PlayerPacketReceived += ReceivedPacket;
+    }
+    private void ReceivedPacket(PlayerPacket packet, ConnectionManager connection)
+    {
+        if(packet.id == id)
+        {
+            Velocity = packet.velocity;
+            Position = packet.position;
+        }
     }
 
     protected bool IsOnGround()
@@ -62,5 +71,7 @@ public partial class NetObject : CharacterBody2D
         {
             Velocity = new(0f, Velocity.Y);
         }
+        PlayerPacket packet = new(id, GlobalPosition, Velocity);
+        NetworkingV2.SendPacketToAll(packet);
     }
 }
