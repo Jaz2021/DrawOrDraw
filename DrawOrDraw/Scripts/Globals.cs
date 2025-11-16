@@ -21,7 +21,7 @@ public partial class Globals : Node
 	[Export] private PackedScene StitchChar;
 	[Export] private PackedScene canvasScene;
 	[Export] private PackedScene stageScene;
-	private Scene currentScene = null;
+	public Scene currentScene = null;
 	private MenuController currentMenu = null;
 	private Env currentEnv = null;
 	private bool inGame = false;

@@ -83,6 +83,7 @@ public partial class MainPlayer : Node
         }
         if (e.IsActionPressed("Interact"))
         {
+            myObj.Throw(moveDir.Normalized());
         }
         if (e.IsActionPressed("Pause"))
         {
@@ -122,7 +123,7 @@ public partial class MainPlayer : Node
     {
         if(NetworkingV2.isInit && NetworkingV2.GetLobbyID() != (CSteamID)0)
         {
-            PlayerPacket packet = new(myObj.id, myObj.Position, myObj.Velocity);
+            PlayerPacket packet = new(myObj.headThrown, myObj.id, myObj.Position, myObj.Velocity);
             NetworkingV2.SendPacketToAll(packet);
         }
     }
