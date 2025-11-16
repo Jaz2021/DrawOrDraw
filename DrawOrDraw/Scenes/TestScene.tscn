@@ -30,6 +30,7 @@ position = Vector2(-686, -127)
 position = Vector2(707, -142)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.2, 1.2)
 
 [node name="Healthbar-P1" parent="Camera2D" instance=ExtResource("4_0f5h7")]
 visible = false

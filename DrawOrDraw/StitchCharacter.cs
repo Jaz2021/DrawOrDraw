@@ -67,6 +67,20 @@ public partial class StitchCharacter : NetObject
 		RightShoulder.Rotation = -Velocity.Angle();
 		RightElbow.Rotation = Velocity.Angle();
     }
+	public void OnHeadEntered(Node2D node)
+    {
+        if(node is StitchCharacter s)
+        {
+            if(s != this)
+            {
+                s.Kill();
+            }
+        }
+    }
+	public void Kill()
+    {
+        GD.Print("Someone touched my head :(");
+    }
 
 
 	public void SetTextures(Dictionary<textName, SpriteArray2D> parts)

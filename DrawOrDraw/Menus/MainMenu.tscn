@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba65bybja3enw"]
+[gd_scene load_steps=8 format=3 uid="uid://ba65bybja3enw"]
 
 [ext_resource type="Script" uid="uid://dr6h31n1d7gxy" path="res://Scripts/Menu/MainMenu.cs" id="1_5ncg0"]
 [ext_resource type="Texture2D" uid="uid://bq53gjya2ulug" path="res://sprite_textures/titlescreen.png" id="2_5ncg0"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://dfjo5otlqfkbm" path="res://Scripts/titlescreen_colors.gd" id="3_1txdl"]
 [ext_resource type="Script" uid="uid://dt4nxei6dvf7u" path="res://Scripts/Menu/Menu.cs" id="3_5ncg0"]
 [ext_resource type="Texture2D" uid="uid://t2pcny5rtux" path="res://sprite_textures/stickynote.png" id="5_1txdl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xbyl"]
+font_size = 47
+font_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("NewGameMenu", "defaultSubMenu")]
 layout_mode = 3
@@ -27,6 +31,23 @@ script = ExtResource("3_1txdl")
 position = Vector2(275, 517)
 scale = Vector2(10.9375, 20.5)
 texture = ExtResource("3_0xbyl")
+
+[node name="Control" type="Control" parent="WhiteSprite"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="WhiteSprite/Control"]
+layout_mode = 0
+offset_left = 2.1028578
+offset_top = 14.682925
+offset_right = 300.10284
+offset_bottom = 79.68292
+rotation = -1.5707964
+scale = Vector2(0.1, 0.2)
+text = "DrawOrDraw"
+label_settings = SubResource("LabelSettings_0xbyl")
 
 [node name="TitleScreen" type="Control" parent="." node_paths=PackedStringArray("PreviousMenu")]
 layout_mode = 1
@@ -106,10 +127,24 @@ position = Vector2(1098.0001, 315.00003)
 scale = Vector2(5.59375, 5.59375)
 texture = ExtResource("5_1txdl")
 
+[node name="Label" type="Label" parent="Stickynote"]
+offset_left = -20.379911
+offset_top = -10.18995
+offset_right = 19.620089
+offset_bottom = 12.81005
+text = "Start"
+
 [node name="Stickynote2" type="Sprite2D" parent="."]
 position = Vector2(1259.0001, 752)
 scale = Vector2(5.59375, 5.59375)
 texture = ExtResource("5_1txdl")
+
+[node name="Label" type="Label" parent="Stickynote2"]
+offset_left = -18.413431
+offset_top = -7.5083804
+offset_right = 21.586569
+offset_bottom = 15.491619
+text = "Quit"
 
 [connection signal="pressed" from="TitleScreen/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="TitleScreen/Quit" to="." method="QuitPressed"]

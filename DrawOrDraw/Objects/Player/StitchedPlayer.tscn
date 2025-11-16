@@ -1,16 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbm8xs3f4osfy"]
+[gd_scene load_steps=7 format=3 uid="uid://dbm8xs3f4osfy"]
 
 [ext_resource type="Script" uid="uid://bfl0y4anuw82m" path="res://StitchCharacter.cs" id="1_mnira"]
 [ext_resource type="Texture2D" uid="uid://cgvxrvse4kws5" path="res://sprite_textures/TorsoBackground.png" id="2_mnira"]
 [ext_resource type="Texture2D" uid="uid://sf6tuoev5xqj" path="res://sprite_textures/HeadBackground.png" id="3_4nip5"]
 [ext_resource type="Texture2D" uid="uid://d0m5d4q64nj3r" path="res://sprite_textures/LimbBackground.png" id="4_1hc70"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nip5"]
+size = Vector2(48, 2)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnira"]
 size = Vector2(78, 131)
 
 [node name="StitchedPlayer" type="CharacterBody2D" node_paths=PackedStringArray("Head", "Torso", "LeftUpperArm", "LeftForearm", "RightUpperArm", "RightForearm", "LeftThigh", "LeftShin", "RightThigh", "RightShin", "Neck", "LeftShoulder", "LeftElbow", "RightShoulder", "RightElbow", "LeftHip", "LeftKnee", "RightHip", "RightKnee", "FootPos")]
 top_level = true
-collision_mask = 3
+collision_mask = 6
 script = ExtResource("1_mnira")
 Head = NodePath("Neck/Head")
 Torso = NodePath("Torso")
@@ -78,6 +81,12 @@ position = Vector2(1, -20)
 [node name="Head" type="Sprite2D" parent="Neck"]
 position = Vector2(-1, -20)
 texture = ExtResource("3_4nip5")
+
+[node name="Area2D" type="Area2D" parent="Neck/Head"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Neck/Head/Area2D"]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_4nip5")
 
 [node name="LeftHip" type="Node2D" parent="."]
 position = Vector2(-14, 22)
