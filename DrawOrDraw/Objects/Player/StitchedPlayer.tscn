@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbm8xs3f4osfy"]
+[gd_scene load_steps=9 format=3 uid="uid://dbm8xs3f4osfy"]
 
 [ext_resource type="Script" uid="uid://bfl0y4anuw82m" path="res://StitchCharacter.cs" id="1_mnira"]
+[ext_resource type="PackedScene" path="res://defeat.tscn" id="2_1hc70"]
 [ext_resource type="Texture2D" uid="uid://cgvxrvse4kws5" path="res://sprite_textures/TorsoBackground.png" id="2_mnira"]
 [ext_resource type="Texture2D" uid="uid://sf6tuoev5xqj" path="res://sprite_textures/HeadBackground.png" id="3_4nip5"]
+[ext_resource type="PackedScene" uid="uid://bdgifensphash" path="res://head.tscn" id="3_xar3s"]
 [ext_resource type="Texture2D" uid="uid://d0m5d4q64nj3r" path="res://sprite_textures/LimbBackground.png" id="4_1hc70"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4nip5"]
@@ -11,7 +13,7 @@ size = Vector2(48, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnira"]
 size = Vector2(78, 131)
 
-[node name="StitchedPlayer" type="CharacterBody2D" node_paths=PackedStringArray("Head", "Torso", "LeftUpperArm", "LeftForearm", "RightUpperArm", "RightForearm", "LeftThigh", "LeftShin", "RightThigh", "RightShin", "Neck", "LeftShoulder", "LeftElbow", "RightShoulder", "RightElbow", "LeftHip", "LeftKnee", "RightHip", "RightKnee", "FootPos")]
+[node name="StitchedPlayer" type="CharacterBody2D" node_paths=PackedStringArray("Head", "Torso", "LeftUpperArm", "LeftForearm", "RightUpperArm", "RightForearm", "LeftThigh", "LeftShin", "RightThigh", "RightShin", "Neck", "LeftShoulder", "LeftElbow", "RightShoulder", "RightElbow", "LeftHip", "LeftKnee", "RightHip", "RightKnee", "headCollider", "FootPos")]
 top_level = true
 collision_mask = 6
 script = ExtResource("1_mnira")
@@ -34,6 +36,9 @@ LeftHip = NodePath("LeftHip")
 LeftKnee = NodePath("LeftHip/LeftKnee")
 RightHip = NodePath("RightHip")
 RightKnee = NodePath("RightHip/RightKnee")
+DefeatScene = ExtResource("2_1hc70")
+headCollider = NodePath("Neck/Head/Area2D/CollisionShape2D")
+headScene = ExtResource("3_xar3s")
 MaxGroundSpeed = 2400.0
 MaxAirSpeed = 600.0
 FootPos = NodePath("RayCast2D")
