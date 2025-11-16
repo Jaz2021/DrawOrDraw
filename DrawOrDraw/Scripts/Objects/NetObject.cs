@@ -29,7 +29,7 @@ public partial class NetObject : CharacterBody2D
     protected Node2D objRoot;
     public void Init(ulong id, ObjectType type, Node2D objRoot, Vector2 position)
     {
-        GD.Print($"Initiallizing NetObj with id {id}");
+        // GD.Print($"Initiallizing NetObj with id {id}");
         this.id = id;
         this.objRoot = objRoot;
         pos = position;
@@ -39,11 +39,11 @@ public partial class NetObject : CharacterBody2D
     {
         base._Ready();
         PlayerPacket.PlayerPacketReceived += ReceivedPacket;
-        GD.Print("Listening for Player packets");
+        // GD.Print("Listening for Player packets");
     }
     private void ReceivedPacket(PlayerPacket packet, ConnectionManager connection)
     {
-        GD.Print($"Received packet for pid: {packet.id}");
+        // GD.Print($"Received packet for pid: {packet.id}");
         if(packet.id == id)
         {
         
@@ -78,7 +78,7 @@ public partial class NetObject : CharacterBody2D
         {
             Velocity = new(0f, Velocity.Y);
         }
-        GD.Print($"Packet id: {id}");
+        // GD.Print($"Packet id: {id}");
         if(id == (ulong)NetworkingV2.steamID)
         {
             PlayerPacket packet = new(id, GlobalPosition, Velocity);
