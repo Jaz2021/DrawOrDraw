@@ -63,8 +63,8 @@ public partial class StitchCharacter : NetObject
 
 	public void FlailArms()
     {
-        LeftShoulder.Rotation = -Velocity.Angle();
-		LeftElbow.Rotation = -Velocity.Angle();
+        LeftShoulder.Rotation = Velocity.Angle();
+		LeftElbow.Rotation = Velocity.Angle();
 		RightShoulder.Rotation = -Velocity.Angle();
 		RightElbow.Rotation = -Velocity.Angle();
     }
